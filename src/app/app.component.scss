@@ -1,0 +1,91 @@
+
+$content-width: 1280px;
+
+header {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 109px;
+    background: rgba(196, 196, 196, 0.16);
+    .header-content {
+        width: $content-width;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 168px;
+            height: 50px;
+            background: rgba(11, 154, 154, 0.51);
+            font-weight: 700;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+        }
+    }
+}
+main {
+    height: calc(100vh - 109px - 81px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .content {
+        width: $content-width;
+        height: 460px;
+        display: flex;
+        justify-content: space-between;
+        &-text {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 700px;
+            background: #C4C4C4;
+            font-size: 48px;
+            line-height: 55px;
+            &-inner {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                width: 650px;
+                height: 300px;
+                color: white;
+                &-symbol {
+                    color: #4FB2B2
+                }
+                &-center {
+                    color: #ECE4E4;
+                    display: flex;
+                    justify-content: center;
+                }
+
+                &-right {
+                    display: flex;
+                    justify-content: right;
+                }
+            }
+        }
+
+        &-login {
+            height: 100%;
+            width: 520px;
+            &-form {
+                background: #C4C4C4;
+                height: 70%;
+            }
+            &-buttons {
+                background: #be5c5c;
+                height: 30%;
+            }
+        }
+    }
+}
+
+footer {
+    width: 100%;
+    height: 81px;
+    background: #C4C4C4;
+}
