@@ -1,0 +1,62 @@
+$content-width: 1280px;
+.content {
+    width: $content-width;
+    height: 460px;
+    display: flex;
+    justify-content: space-between;
+    &-text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 700px;
+        background: #C4C4C4;
+        font-size: 48px;
+        line-height: 55px;
+        &-inner {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 650px;
+            height: 300px;
+            color: white;
+            &-symbol {
+                color: #4FB2B2
+            }
+            &-center {
+                color: #ECE4E4;
+                display: flex;
+                justify-content: center;
+            }
+
+            &-right {
+                display: flex;
+                justify-content: right;
+            }
+        }
+    }
+
+    &-login {
+        height: 100%;
+        width: 520px;
+        &-form {
+            background: #C4C4C4;
+            height: 80%;
+        }
+        &-buttons {
+            display: flex;
+            height: 20%;  
+            align-items: flex-end;
+            justify-content: flex-end;
+            &-inner {
+                display: flex;
+                justify-content: space-between;
+                width: 80%;
+                button {
+                    height: 70px;
+                    width: 200px;
+                }
+            }  
+        }
+    }
+}
