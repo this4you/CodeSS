@@ -7,6 +7,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PagesModule } from './pages/pages.module';
+import { AuthGuard } from './auth.guard';
+import { NoAuthGuard } from './no-auth.guard';
+import { ServicesModule } from './services/services.module';
 
 @NgModule({
   declarations: [
@@ -22,9 +25,10 @@ import { PagesModule } from './pages/pages.module';
       registrationStrategy: 'registerWhenStable:30000'
     }),
     BrowserAnimationsModule,
-    PagesModule
+    PagesModule,
+    ServicesModule
   ],
-  providers: [],
+  providers: [AuthGuard, NoAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

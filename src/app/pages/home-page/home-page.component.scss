@@ -21,7 +21,7 @@ $content-width: 1280px;
             height: 300px;
             color: white;
             &-symbol {
-                color: #4FB2B2
+                color: var(--first-color);
             }
             &-center {
                 color: #ECE4E4;

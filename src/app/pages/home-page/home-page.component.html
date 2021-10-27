@@ -20,8 +20,12 @@
         </div>
         <div class="content-login-buttons">
             <div class="content-login-buttons-inner">
-                <button mat-raised-button color="primary">Sing In</button>
-                <button mat-stroked-button color="primary">Sing Up</button>
+                <button [routerLink]="['/login']" mat-stroked-button color="primary"
+                    routerLinkActive="mat-raised-button">Sing
+                    In</button>
+                <button [routerLink]="['/register']" mat-stroked-button color="primary"
+                    routerLinkActive="mat-raised-button">Sing
+                    Up</button>
             </div>
         </div>
     </div>
