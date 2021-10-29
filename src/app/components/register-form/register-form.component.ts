@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register-form.component.scss']
 })
 export class RegisterFormComponent implements OnInit {
-
+  hide = true;
+  repeatHide = true;
+  
   constructor() { }
 
   ngOnInit(): void {

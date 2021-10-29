@@ -10,6 +10,7 @@ import { PagesModule } from './pages/pages.module';
 import { AuthGuard } from './auth.guard';
 import { NoAuthGuard } from './no-auth.guard';
 import { ServicesModule } from './services/services.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ServicesModule } from './services/services.module';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,

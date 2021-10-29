@@ -1,14 +1,16 @@
 <div class="login">
     <mat-form-field appearance="outline">
         <mat-label>Login</mat-label>
-        <input matInput placeholder="Login">
+        <input matInput [ngModel]="login" (ngModelChange)="loginChanged($event)" placeholder="Login">
         <!-- <mat-icon matSuffix> sentiment_very_satisfied </mat-icon> -->
         <!-- <mat-hint>Hint</mat-hint> -->
     </mat-form-field>
     <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>
-        <input matInput placeholder="Password">
-        <!-- <mat-icon matSuffix> sentiment_very_satisfied </mat-icon> -->
-        <!-- <mat-hint>Hint</mat-hint> -->
+        <input matInput [ngModel]="password" (ngModelChange)="passwordChanged($event)" [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
     </mat-form-field>
-</div>  
+</div>

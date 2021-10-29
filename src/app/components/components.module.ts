@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { MaterialComponentModuleModule } from '../material-component-module/material-component-module.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -13,7 +14,8 @@ import { MaterialComponentModuleModule } from '../material-component-module/mate
   ],
   imports: [
     CommonModule,
-    MaterialComponentModuleModule
+    MaterialComponentModuleModule,
+    FormsModule
   ],
   exports: []
 })
