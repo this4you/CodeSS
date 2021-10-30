@@ -12,6 +12,7 @@ import { NoAuthGuard } from './no-auth.guard';
 import { ServicesModule } from './services/services.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { HttpClientModule } from '@angular/common/http';
     PagesModule,
     ServicesModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxSpinnerModule
   ],
   providers: [AuthGuard, NoAuthGuard],
   bootstrap: [AppComponent]

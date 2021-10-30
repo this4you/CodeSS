@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { BehaviorSubject } from 'rxjs';
 import { LoginModel } from '../model/login.model';
 import { ServerService } from './server.service';
@@ -13,7 +15,12 @@ export class AuthService {
     return this.loggedIn.asObservable();
   }
 
-  constructor(private router: Router, private server: ServerService) {
+  constructor(
+    private router: Router,
+    private server: ServerService,
+    private spinnerService: NgxSpinnerService,
+    private _snackBar: MatSnackBar
+  ) {
     console.log('Auth Service');
     const userData = localStorage.getItem('user');
     if (userData) {
@@ -27,11 +34,12 @@ export class AuthService {
 
   login(user: LoginModel): any {
     if (user.Login !== '' && user.Password !== '') {
+      this.spinnerService.show();
       return this.server.request('POST', '/login', {
         login: user.Login,
         password: user.Password
       }).subscribe((response: any) => {
-        debugger
+        this.spinnerService.hide();
         if (response.auth === true && response.token !== undefined) {
           this.token = response.token;
           this.server.setLoggedIn(true, this.token);
@@ -43,6 +51,8 @@ export class AuthService {
           this.router.navigateByUrl('/main');
         }
       }, (error: any) => {
+        this.spinnerService.hide();
+        this._snackBar.open("Login error", null, {duration: 2000});
         //!!! TEMP
         // this.token = "testToken";
         // this.server.setLoggedIn(true, this.token);
