@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from './auth.service';
-import { LoginModelService } from './login-model.service';
+import { ServerService } from './server.service';
 
 
 
@@ -10,6 +10,6 @@ import { LoginModelService } from './login-model.service';
   imports: [
     CommonModule
   ],
-  providers: [AuthService, LoginModelService]
+  providers: [AuthService, ServerService]
 })
 export class ServicesModule { }

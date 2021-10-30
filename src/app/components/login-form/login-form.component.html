@@ -1,16 +1,18 @@
 <div class="login">
-    <mat-form-field appearance="outline">
-        <mat-label>Login</mat-label>
-        <input matInput [ngModel]="login" (ngModelChange)="loginChanged($event)" placeholder="Login">
-        <!-- <mat-icon matSuffix> sentiment_very_satisfied </mat-icon> -->
-        <!-- <mat-hint>Hint</mat-hint> -->
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-        <mat-label>Password</mat-label>
-        <input matInput [ngModel]="password" (ngModelChange)="passwordChanged($event)" [type]="hide ? 'password' : 'text'">
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-            [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
-    </mat-form-field>
+    <form #myForm="ngForm" (keydown)="keyDownFunction($event, myForm)">
+        <mat-form-field appearance="outline">
+            <mat-label>Login</mat-label>
+            <input name="login" required minlength="3" matInput
+                [(ngModel)]="authDate.Login" #login="ngModel" placeholder="Login">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input name="password" required type="password" matInput
+                [(ngModel)]="authDate.Password" #password="ngModel" [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="this.hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+    </form>
 </div>

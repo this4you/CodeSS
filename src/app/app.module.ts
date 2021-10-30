@@ -10,7 +10,8 @@ import { PagesModule } from './pages/pages.module';
 import { AuthGuard } from './auth.guard';
 import { NoAuthGuard } from './no-auth.guard';
 import { ServicesModule } from './services/services.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import { FormsModule } from '@angular/forms';
     }),
     BrowserAnimationsModule,
     PagesModule,
-    ServicesModule
+    ServicesModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [AuthGuard, NoAuthGuard],
   bootstrap: [AppComponent]

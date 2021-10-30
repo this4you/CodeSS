@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginModelService } from 'src/app/services/login-model.service';
+import { LoginModel } from 'src/app/model/login.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'code-ss-login-form',
@@ -7,23 +8,24 @@ import { LoginModelService } from 'src/app/services/login-model.service';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent implements OnInit {
-  public hide: boolean = true;
-  public login: string = "";
-  public password: string = "";
 
-  constructor(
-    private readonly loginModelService: LoginModelService
-  ) { }
+  public hide: boolean = true;
+  public authDate: LoginModel = new LoginModel("", "");
+  
+  constructor(private authService: AuthService) { }
+
+  public async keyDownFunction(event, form) {
+    if (form.valid && event.keyCode === 13) {
+      // alert(JSON.stringify(this.authDate));
+      try {
+        await this.authService.login(this.authDate);      
+      } catch (err) {
+        alert("Login error");
+      }
+    }
+  }
+
 
   ngOnInit(): void {
   }
-
-  loginChanged(event: any): void {
-    this.loginModelService.changeLogin(event as string);
-  }
-
-  passwordChanged(event: any): void {
-    this.loginModelService.changePassword(event as string);
-  }
-
 }
