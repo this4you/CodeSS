@@ -35,35 +35,26 @@ export class AuthService {
   login(user: LoginModel): any {
     if (user.Login !== '' && user.Password !== '') {
       this.spinnerService.show();
-      return this.server.request('POST', '/login', {
+      return this.server.request('POST', 'user/authenticate', {
         login: user.Login,
         password: user.Password
       }).subscribe((response: any) => {
         this.spinnerService.hide();
-        if (response.auth === true && response.token !== undefined) {
-          this.token = response.token;
+        if (response.jwtToken) {
+          this.token = response.jwtToken;
           this.server.setLoggedIn(true, this.token);
           this.loggedIn.next(true);
           const userData = {
             token: this.token,
+            id: response.id,
+            login: response.login
           };
           localStorage.setItem('user', JSON.stringify(userData));
           this.router.navigateByUrl('/main');
         }
       }, (error: any) => {
         this.spinnerService.hide();
-        this._snackBar.open("Login error", null, {duration: 2000});
-        //!!! TEMP
-        // this.token = "testToken";
-        // this.server.setLoggedIn(true, this.token);
-        // this.loggedIn.next(true);
-        // const userData = {
-        //   token: this.token,
-        // };
-        // localStorage.setItem('user', JSON.stringify(userData));
-        // this.router.navigateByUrl('/main');
-        //!! TEMP 
-      });
+        this._snackBar.open("Login error", null, {duration: 2000});});
     }
   }
 

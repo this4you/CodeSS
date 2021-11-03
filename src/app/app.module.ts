@@ -13,6 +13,7 @@ import { ServicesModule } from './services/services.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { MaterialComponentModuleModule } from './material-component-module/material-component-module.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
+    MaterialComponentModuleModule,
     BrowserAnimationsModule,
     PagesModule,
     ServicesModule,
