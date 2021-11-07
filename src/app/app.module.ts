@@ -11,9 +11,10 @@ import { AuthGuard } from './auth.guard';
 import { NoAuthGuard } from './no-auth.guard';
 import { ServicesModule } from './services/services.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MaterialComponentModuleModule } from './material-component-module/material-component-module.module';
+import { AuthInterceptor } from './services/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,15 @@ import { MaterialComponentModuleModule } from './material-component-module/mater
     HttpClientModule,
     NgxSpinnerModule
   ],
-  providers: [AuthGuard, NoAuthGuard],
+  providers: [
+    AuthGuard,
+    NoAuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
