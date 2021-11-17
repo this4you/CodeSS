@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import {environment} from '../../environments/environment';
+import { HttpClient, HttpContext, HttpParams } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { IS_NEED_SPINER } from './spinner-interceptor.service';
 
 const baseUrl = environment.apiUrl;
 
@@ -18,9 +19,12 @@ export class ServerService {
         this.token = token;
     }
 
-    request(method: string, route: string, data?: any) {
+    request(method: string, route: string, data?: any, needSpin?: boolean) {
+        const context: HttpContext = new HttpContext();
+        context.set(IS_NEED_SPINER, needSpin);
+
         if (method === 'GET') {
-            return this.get(route, data);
+            return this.get(route, context, data);
         }
 
         const header = (this.loggedIn) ? { Authorization: `Bearer ${this.token}` } : undefined;
@@ -29,11 +33,12 @@ export class ServerService {
             body: data,
             responseType: 'json',
             observe: 'body',
-            headers: header
+            headers: header,
+            context
         });
     }
 
-    get(route: string, data?: any) {
+    get(route: string, context: HttpContext, data?: any) {
         const header = (this.loggedIn) ? { Authorization: `Bearer ${this.token}` } : undefined;
 
         let params = new HttpParams();
@@ -46,7 +51,8 @@ export class ServerService {
         return this.http.get(baseUrl + route, {
             responseType: 'json',
             headers: header,
-            params
+            params,
+            context
         });
     }
 }

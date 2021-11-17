@@ -10,18 +10,13 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginFormComponent implements OnInit {
 
   public hide: boolean = true;
-  public authDate: LoginModel = new LoginModel("", "");
-  
+  public authDate: LoginModel = new LoginModel();
+
   constructor(private authService: AuthService) { }
 
   public async keyDownFunction(event, form) {
     if (form.valid && event.keyCode === 13) {
-      // alert(JSON.stringify(this.authDate));
-      try {
-        await this.authService.login(this.authDate);      
-      } catch (err) {
-        alert("Login error");
-      }
+      await this.authService.login(this.authDate);
     }
   }
 

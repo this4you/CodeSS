@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { BehaviorSubject } from 'rxjs';
 import { LoginModel } from '../model/login.model';
+import { RegisterModel } from '../model/register.model';
 import { ServerService } from './server.service';
 
 @Injectable()
@@ -18,7 +18,6 @@ export class AuthService {
   constructor(
     private router: Router,
     private server: ServerService,
-    private spinnerService: NgxSpinnerService,
     private _snackBar: MatSnackBar
   ) {
     console.log('Auth Service');
@@ -32,30 +31,40 @@ export class AuthService {
     }
   }
 
+  register(registerData: RegisterModel): any {
+    return this.server.request('POST', 'user/register', {
+      email: registerData.Email,
+      login: registerData.Login,
+      password: registerData.Password
+    }, true).subscribe(() => {
+      this._snackBar.open("Registration success", null, { duration: 2000 });
+      this.router.navigate(['/']);
+    }, (error: any) => {
+      this._snackBar.open("Registration error", null, { duration: 2000 });
+    });
+  }
+
   login(user: LoginModel): any {
-    if (user.Login !== '' && user.Password !== '') {
-      this.spinnerService.show();
-      return this.server.request('POST', 'user/authenticate', {
-        login: user.Login,
-        password: user.Password
-      }).subscribe((response: any) => {
-        this.spinnerService.hide();
-        if (response.jwtToken) {
-          this.token = response.jwtToken;
-          this.server.setLoggedIn(true, this.token);
-          this.loggedIn.next(true);
-          const userData = {
-            token: this.token,
-            id: response.id,
-            login: response.login
-          };
-          localStorage.setItem('user', JSON.stringify(userData));
-          this.router.navigateByUrl('/main');
-        }
-      }, (error: any) => {
-        this.spinnerService.hide();
-        this._snackBar.open("Login error", null, {duration: 2000});});
-    }
+    return this.server.request('POST', 'user/authenticate', {
+      login: user.Login,
+      password: user.Password
+    }, true).subscribe((response: any) => {
+      if (response.jwtToken) {
+        this.token = response.jwtToken;
+        this.server.setLoggedIn(true, this.token);
+        this.loggedIn.next(true);
+        const userData = {
+          token: this.token,
+          id: response.id,
+          login: response.login
+        };
+        localStorage.setItem('user', JSON.stringify(userData));
+        this.router.navigateByUrl('/main');
+      }
+    }, (error: any) => {
+      this._snackBar.open("Login error", null, { duration: 2000 });
+    });
+
   }
 
   logout() {
@@ -66,4 +75,6 @@ export class AuthService {
     localStorage.clear();
     this.router.navigate(['/']);
   }
+
+
 }
