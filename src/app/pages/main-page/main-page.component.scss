@@ -1,0 +1,15 @@
+.ng-star-inserted {
+    width: 100%;
+}
+.main {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-menu {
+    width: 50px;
+    min-height: 570px;
+    height: calc(100vh - 70px - 50px);
+    background: rgba(196, 196, 196);
+}
