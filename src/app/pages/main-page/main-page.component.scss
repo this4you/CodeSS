@@ -5,11 +5,33 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    .content {
+        flex: 1;
+    }
 }
 
 .left-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     width: 50px;
     min-height: 570px;
-    height: calc(100vh - 70px - 50px);
+    height: calc(100vh - 70px - 30px);
     background: rgba(196, 196, 196);
+    .top-icon {
+        .icon-button-container {
+            padding-top: 5px;
+        }
+    }
+    .mid-icon {
+        .icon-button-container {
+            padding-top: 20px;
+        }
+    }
+    .bot-icon {
+        .icon-button-container {
+            padding-bottom: 5px;
+        }
+    }
 }

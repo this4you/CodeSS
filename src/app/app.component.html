@@ -5,7 +5,7 @@
         <span>CodeSS</span>
       </div>
       <div class="log-out" *ngIf="(authService.isLoggedIn | async)">
-        <button color="primary" (click)="logout()" mat-icon-button aria-label="Log-out">
+        <button color="primary" (click)="logout()" mat-mini-fab aria-label="Log-out">
           <mat-icon>logout</mat-icon>
         </button>
       </div>

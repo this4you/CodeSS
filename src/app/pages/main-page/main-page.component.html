@@ -1,16 +1,56 @@
 <div class="main">
     <div class="left-menu">
-        
+        <div class="top-icon">
+            <div class="icon-button-container">
+                <button [routerLink]="['/main']" mat-mini-fab color="primary" #myTemplateVar="routerLinkActive"  routerLinkActive="accent"
+                    aria-label="Example icon button with a delete icon">
+                    <mat-icon>home</mat-icon>
+                    {{myTemplateVar}}
+                </button>
+            </div>
+        </div>
+        <div class="mid-icon">
+            <div class="icon-button-container">
+                <button [routerLink]="['/main/code']" mat-mini-fab color="primary"
+                    aria-label="Example icon button with a delete icon">
+                    <mat-icon>code</mat-icon>
+                </button>
+            </div>
+            <div class="icon-button-container">
+                <button [routerLink]="['/main/links']" mat-mini-fab color="primary"
+                    aria-label="Example icon button with a delete icon">
+                    <mat-icon>link</mat-icon>
+                </button>
+            </div>
+            <div class="icon-button-container">
+                <button [routerLink]="['/main/team']" mat-mini-fab color="primary"
+                    aria-label="Example icon button with a delete icon">
+                    <mat-icon>people</mat-icon>
+                </button>
+            </div>
+            <div class="icon-button-container">
+                <button [routerLink]="['/main/chat']" mat-mini-fab color="primary"
+                    aria-label="Example icon button with a delete icon">
+                    <mat-icon>chat</mat-icon>
+                </button>
+            </div>
+            <div class="icon-button-container">
+                <button [routerLink]="['/main/notification']" mat-mini-fab color="primary"
+                    aria-label="Example icon button with a delete icon">
+                    <mat-icon>notifications</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div class="bot-icon">
+            <div class="icon-button-container">
+                <button [routerLink]="['/main/setting']" mat-mini-fab color="primary"
+                    aria-label="Example icon button with a delete icon">
+                    <mat-icon>settings</mat-icon>
+                </button>
+            </div>
+        </div>
     </div>
-    <div class="content primary">
-        22
-        <!-- 
-            1 Код
-            2 Ссылки
-            3 Комманда
-            4 Чат
-            5 Напоминания
-            
-         -->
+    <div class="content">
+        <router-outlet></router-outlet>
     </div>
 </div>
