@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CodeCategoryService } from 'src/app/services/code-category.service';
 
 @Component({
   selector: 'code-ss-code-edit-subpage',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CodeEditSubpageComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public codeCategoryService: CodeCategoryService,
+    private router: Router) { }
 
   ngOnInit(): void {
+    this.router.navigate(['/main/code/all']);
   }
-
 }

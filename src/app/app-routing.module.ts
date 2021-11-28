@@ -21,7 +21,7 @@ const routes: Routes = [
     component: MainPageComponent,
     children: [
       { path: "", component: HomeSubpageComponent },
-      { path: "code", component: CodeEditSubpageComponent },
+      { path: "code/:category", component: CodeEditSubpageComponent },
       { path: "links", component: UsefulLinksSubpageComponent },
       { path: "team", component: TeamsSubpageComponent },
       { path: "chat", component: ChatSubpageComponent },

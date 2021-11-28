@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CodeCategoryService } from 'src/app/services/code-category.service';
 
 @Component({
   selector: 'code-ss-main-page',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(public codeCategoryService: CodeCategoryService) { }
 
   ngOnInit(): void {
   }

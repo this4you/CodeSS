@@ -14,26 +14,21 @@
         </div>
         <div class="categories-list">
             <div class="category-item">
-                <button mat-raised-button color="primary">SQL</button>
+                <button mat-raised-button color="primary" [routerLink]="['/main/code/all']"
+                (click) = "codeCategoryService.setCurrentCategory('all')"
+                    routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact: true}">All</button>
             </div>
-            <div class="category-item">
-                <button mat-raised-button color="primary">JavaScript</button>
-            </div>
-            <div class="category-item">
-                <button mat-raised-button color="primary">C#</button>
-            </div>
-            <div class="category-item">
-                <button mat-raised-button color="primary">Using Patterns</button>
-            </div>
-            <div class="category-item">
-                <button mat-raised-button color="primary">Best practics</button>
-            </div>
-            <div class="category-item">
-                <button mat-raised-button color="primary">Services</button>
+            <div *ngFor="let category of codeCategoryService.allCategories | async" class="category-item">
+                <button [routerLink]="['/main/code', category.Id]"
+                    routerLinkActive="router-link-active" routerLinkActive="router-link-active" mat-raised-button
+                    (click) = "codeCategoryService.setCurrentCategory(category.Id)"
+                    color="primary">
+                    {{category.Name}}
+                </button>
             </div>
         </div>
     </div>
     <div class="code-content">
-
+        {{codeCategoryService.currentCodeCategory | async}}
     </div>
 </div>
