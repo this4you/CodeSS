@@ -30,3 +30,19 @@ input {
   min-height: 16px;
   height: 16px;
 }
+
+div::-webkit-scrollbar {
+  width: 20px;
+}
+
+div::-webkit-scrollbar-track {
+  background-color: #e4e4e4;
+  border-radius: 100px;
+}
+
+div::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  border: 5px solid transparent;
+  background-clip: content-box;
+  background-color: #8070d4;
+}

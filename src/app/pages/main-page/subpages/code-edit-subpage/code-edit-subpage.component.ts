@@ -8,12 +8,22 @@ import { CodeCategoryService } from 'src/app/services/code-category.service';
   styleUrls: ['./code-edit-subpage.component.scss']
 })
 export class CodeEditSubpageComponent implements OnInit {
+  public searchCategory: string = "";
 
   constructor(
     public codeCategoryService: CodeCategoryService,
     private router: Router) { }
 
   ngOnInit(): void {
-    this.router.navigate(['/main/code/all']);
+    this.codeCategoryService.currentCodeCategory.subscribe(category => {
+      if (category == "all") {
+        this.router.navigate(['/main/code/all']);
+      }
+    });
+  }
+  public createNewCategory() {
+    if (this.searchCategory.trim()) {
+      this.codeCategoryService.create(this.searchCategory);
+    }
   }
 }

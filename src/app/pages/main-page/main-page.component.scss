@@ -5,6 +5,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    max-height: calc(100vh - 70px - 30px);
     .content {
         flex: 1;
     }
@@ -22,7 +23,7 @@
     justify-content: space-between;
     align-items: center;
     width: 50px;
-    min-height: 570px;
+    //min-height: 570px;
     height: calc(100vh - 70px - 30px);
     background: rgba(196, 196, 196);
     .top-icon {

@@ -14,7 +14,7 @@ export class CodeCategoryService {
   }
 
   private _currentCodeCategory = new BehaviorSubject<string>("all");
-  private _allCategories = new BehaviorSubject<CodeCategoryModel[]>(null);
+  private _allCategories = new BehaviorSubject<CodeCategoryModel[]>([]);
 
 
   get currentCodeCategory() {
@@ -27,6 +27,15 @@ export class CodeCategoryService {
 
   setCurrentCategory(category: string) {
     this._currentCodeCategory.next(category);
+  }
+
+  create(name: string) {
+    return this.server.request('POST', 'codecategory', { "Name": name })
+      .subscribe((response: any) => {
+        const currentCategories = this._allCategories.getValue();
+        let categories = [...currentCategories, new CodeCategoryModel(response.id, response.name)];
+        this._allCategories.next(categories);
+      });
   }
 
   private getAll() {

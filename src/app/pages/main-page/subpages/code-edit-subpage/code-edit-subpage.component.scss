@@ -25,6 +25,7 @@
             margin-bottom: 20px;
         }
         .categories-list {
+            overflow-y: scroll;
             height: 100%;
             width: 100%;
             button.router-link-active {

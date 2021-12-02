@@ -3,11 +3,13 @@
         <div class="left-container-config">
             <div class="search-container">
                 <mat-form-field>
-                    <input matInput type="search" placeholder="Categories" class="search-input">
+                    <input [(ngModel)]="searchCategory" matInput type="search" placeholder="Categories"
+                        class="search-input">
                 </mat-form-field>
             </div>
             <div class="add-button-container">
-                <button mat-mini-fab color="primary" aria-label="add category">
+                <button mat-mini-fab color="primary" aria-label="add category"
+                    (click)="createNewCategory()">
                     <mat-icon>add</mat-icon>
                 </button>
             </div>
@@ -15,14 +17,13 @@
         <div class="categories-list">
             <div class="category-item">
                 <button mat-raised-button color="primary" [routerLink]="['/main/code/all']"
-                (click) = "codeCategoryService.setCurrentCategory('all')"
-                    routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact: true}">All</button>
+                    (click)="codeCategoryService.setCurrentCategory('all')" routerLinkActive="router-link-active"
+                    [routerLinkActiveOptions]="{exact: true}">All</button>
             </div>
             <div *ngFor="let category of codeCategoryService.allCategories | async" class="category-item">
-                <button [routerLink]="['/main/code', category.Id]"
-                    routerLinkActive="router-link-active" routerLinkActive="router-link-active" mat-raised-button
-                    (click) = "codeCategoryService.setCurrentCategory(category.Id)"
-                    color="primary">
+                <button [routerLink]="['/main/code', category.Id]" routerLinkActive="router-link-active"
+                    routerLinkActive="router-link-active" mat-raised-button
+                    (click)="codeCategoryService.setCurrentCategory(category.Id)" color="primary">
                     {{category.Name}}
                 </button>
             </div>

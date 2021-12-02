@@ -12,6 +12,7 @@ import { ChatSubpageComponent } from './main-page/subpages/chat-subpage/chat-sub
 import { NotificationSubpageComponent } from './main-page/subpages/notification-subpage/notification-subpage.component';
 import { HomeSubpageComponent } from './main-page/subpages/home-subpage/home-subpage.component';
 import { SettingSubpageComponent } from './main-page/subpages/setting-subpage/setting-subpage.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -31,7 +32,8 @@ import { SettingSubpageComponent } from './main-page/subpages/setting-subpage/se
     CommonModule,
     ComponentsModule, 
     MaterialComponentModuleModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   exports: [
     HomePageComponent
