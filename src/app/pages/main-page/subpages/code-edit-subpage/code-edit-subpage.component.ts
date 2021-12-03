@@ -21,9 +21,17 @@ export class CodeEditSubpageComponent implements OnInit {
       }
     });
   }
+
   public createNewCategory() {
     if (this.searchCategory.trim()) {
       this.codeCategoryService.create(this.searchCategory);
+      this.searchCategory = "";
     }
+  }
+
+  public deleteCategory(id) {
+    event.stopPropagation();
+    this.codeCategoryService.delete(id);
+    this.codeCategoryService.setCurrentCategory("all");
   }
 }

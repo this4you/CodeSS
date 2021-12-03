@@ -30,7 +30,7 @@ export class CodeCategoryService {
   }
 
   create(name: string) {
-    return this.server.request('POST', 'codecategory', { "Name": name })
+    return this.server.request('POST', 'codecategory', { "Name": name }, true)
       .subscribe((response: any) => {
         const currentCategories = this._allCategories.getValue();
         let categories = [...currentCategories, new CodeCategoryModel(response.id, response.name)];
@@ -38,8 +38,17 @@ export class CodeCategoryService {
       });
   }
 
+  delete(id:string) {
+    return this.server.request('DELETE', `codecategory/${id}`, {}, true)
+      .subscribe((response: any) => {
+        const currentCategories = this._allCategories.getValue();
+        let categories = currentCategories.filter(i => i.Id != id);
+        this._allCategories.next(categories);
+      });
+  }
+
   private getAll() {
-    return this.server.request('GET', 'codecategory')
+    return this.server.request('GET', 'codecategory', {}, true)
       .subscribe((response: any) => {
         if (response && Array.isArray(response)) {
           let codeCategories: CodeCategoryModel[] = [];

@@ -36,10 +36,35 @@
             .category-item {
                 margin-bottom: 5px;
                 display:flex;
-                justify-content: center;
+                justify-content: space-between;
                 width: 100%;
                 button {
-                    width: 95%;
+                    padding: 0;
+                    overflow: hidden;
+                    width: 100%;
+                    .button-content {
+                        .text {
+                            display: inline-block;
+                            max-width: 70%;
+                            overflow: hidden;
+                        }
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        .del-icon {
+                            display: none;
+                        }
+                    }
+                    .button-content:hover {
+                        .del-icon {
+                            font-size: 12px;
+                            line-height: 35px;
+                            position: absolute;
+                            right:0px;
+                            height: 100%;
+                            display: inline-block;
+                        }
+                    }
                 }
             }
         }
