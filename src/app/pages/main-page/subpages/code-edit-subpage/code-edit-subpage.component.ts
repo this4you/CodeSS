@@ -9,6 +9,7 @@ import { CodeCategoryService } from 'src/app/services/code-category.service';
 })
 export class CodeEditSubpageComponent implements OnInit {
   public searchCategory: string = "";
+  public codeText: string ="";
 
   constructor(
     public codeCategoryService: CodeCategoryService,
