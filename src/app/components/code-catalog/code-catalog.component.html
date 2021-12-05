@@ -1,4 +1,4 @@
-<!-- <div class="code-edit-wrapp">
+ <div class="code-edit-wrapp">
     <div class="left-container">
         <div class="left-container-config">
             <div class="search-container">
@@ -15,14 +15,14 @@
         </div>
         <div class="categories-list">
             <div class="category-item">
-                <button mat-raised-button color="primary" [routerLink]="['/main/code/all']"
+                <button mat-raised-button color="primary" [routerLink]="['/main/code/catalog/all']"
                     (click)="codeCategoryService.setCurrentCategory('all')" routerLinkActive="router-link-active"
                     [routerLinkActiveOptions]="{exact: true}">
                     All
                 </button>
             </div>
             <div *ngFor="let category of codeCategoryService.allCategories | async" class="category-item">
-                <button [routerLink]="['/main/code', category.Id]" routerLinkActive="router-link-active"
+                <button [routerLink]="['/main/code/catalog', category.Id]" routerLinkActive="router-link-active"
                     routerLinkActive="router-link-active" mat-raised-button
                     (click)="codeCategoryService.setCurrentCategory(category.Id)" color="primary">
                     <div class="button-content">
@@ -47,7 +47,5 @@
             
         </div> -->
 
-   <!-- </div>
-</div> -->
-
-<router-outlet></router-outlet>
+    </div>
+</div> 

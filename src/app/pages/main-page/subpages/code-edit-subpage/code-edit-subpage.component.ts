@@ -8,31 +8,16 @@ import { CodeCategoryService } from 'src/app/services/code-category.service';
   styleUrls: ['./code-edit-subpage.component.scss']
 })
 export class CodeEditSubpageComponent implements OnInit {
-  public searchCategory: string = "";
-  public codeText: string ="";
 
-  constructor(
-    public codeCategoryService: CodeCategoryService,
-    private router: Router) { }
+  constructor(public router: Router, private codeCategoryService: CodeCategoryService) { }
 
   ngOnInit(): void {
     this.codeCategoryService.currentCodeCategory.subscribe(category => {
       if (category == "all") {
-        this.router.navigate(['/main/code/all']);
+        this.router.navigate(['/main/code/catalog/all']);
       }
     });
   }
 
-  public createNewCategory() {
-    if (this.searchCategory.trim()) {
-      this.codeCategoryService.create(this.searchCategory);
-      this.searchCategory = "";
-    }
-  }
-
-  public deleteCategory(id) {
-    event.stopPropagation();
-    this.codeCategoryService.delete(id);
-    this.codeCategoryService.setCurrentCategory("all");
-  }
+   
 }
