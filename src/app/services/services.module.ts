@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthService } from './auth.service';
+import { AuthService } from './auth/auth.service';
 import { ServerService } from './server.service';
-import { CodeCategoryService } from './code-category.service';
+import { CodeCategoryService } from './api/code-category.service';
+import { CodeService } from './api/code.service';
 
 
 
@@ -11,6 +12,11 @@ import { CodeCategoryService } from './code-category.service';
   imports: [
     CommonModule
   ],
-  providers: [AuthService, ServerService, CodeCategoryService]
+  providers: [
+    AuthService, 
+    ServerService, 
+    CodeCategoryService,
+    CodeService
+  ]
 })
 export class ServicesModule { }

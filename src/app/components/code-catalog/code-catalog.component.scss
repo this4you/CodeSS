@@ -26,8 +26,15 @@
         .add-button-container {
             width: 100%;
             display: flex;
-            justify-content: center;
             margin-bottom: 20px;
+            .button-container {
+                flex: 1;
+                justify-content: center;
+                display: flex;
+            }
+            .empty-block {
+                width: 10px;
+            }
         }
         .categories-list {
             overflow-y: scroll;

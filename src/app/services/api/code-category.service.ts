@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { CodeCategoryModel } from '../model/codecategory.model';
-import { ServerService } from './server.service';
+import { CodeCategoryModel } from '../../model/codecategory.model';
+import { ServerService } from '../server.service';
 
 @Injectable()
 export class CodeCategoryService {
@@ -53,7 +53,6 @@ export class CodeCategoryService {
         if (response && Array.isArray(response)) {
           let codeCategories: CodeCategoryModel[] = [];
           codeCategories = response.map(item => new CodeCategoryModel(item.id, item.name));
-
           this._allCategories.next(codeCategories);
         }
       });

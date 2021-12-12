@@ -14,7 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MaterialComponentModuleModule } from './material-component-module/material-component-module.module';
-import { AuthInterceptor } from './services/auth-interceptor.service';
+import { AuthInterceptor } from './services/auth/auth-interceptor.service';
 import { SpinnerInterceptor } from './services/spinner-interceptor.service';
 
 @NgModule({

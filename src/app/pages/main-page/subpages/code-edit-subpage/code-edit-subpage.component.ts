@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CodeCategoryService } from 'src/app/services/code-category.service';
+import { CodeCategoryService } from 'src/app/services/api/code-category.service';
 
 @Component({
   selector: 'code-ss-code-edit-subpage',

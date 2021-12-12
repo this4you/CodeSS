@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { LoginModel } from '../model/login.model';
-import { RegisterModel } from '../model/register.model';
-import { ServerService } from './server.service';
+import { LoginModel } from '../../model/login.model';
+import { RegisterModel } from '../../model/register.model';
+import { ServerService } from '../server.service';
 
 @Injectable()
 export class AuthService {

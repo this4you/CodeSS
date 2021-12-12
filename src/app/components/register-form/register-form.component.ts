@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisterModel } from 'src/app/model/register.model';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'code-ss-register-form',
