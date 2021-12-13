@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { CodeCatalogComponent } from './components/code-catalog/code-catalog.component';
+import { CodeEditorComponent } from './components/code-editor/code-editor.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { NoAuthGuard } from './no-auth.guard';
@@ -25,7 +26,8 @@ const routes: Routes = [
       { 
         path: "code", component: CodeEditSubpageComponent,
         children: [
-          {path: "catalog/:category", component: CodeCatalogComponent}
+          {path: "create", component: CodeEditorComponent},
+          {path: "catalog/:category", component: CodeCatalogComponent},
         ]
      },
       { path: "links", component: UsefulLinksSubpageComponent },

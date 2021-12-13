@@ -12,11 +12,6 @@ export class CodeEditSubpageComponent implements OnInit {
   constructor(public router: Router, private codeCategoryService: CodeCategoryService) { }
 
   ngOnInit(): void {
-    this.codeCategoryService.currentCodeCategory.subscribe(category => {
-      if (category == "all") {
-        this.router.navigate(['/main/code/catalog/all']);
-      }
-    });
   }
 
    

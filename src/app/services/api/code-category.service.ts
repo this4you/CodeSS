@@ -10,7 +10,6 @@ export class CodeCategoryService {
   constructor(
     private server: ServerService,
   ) {
-    this.getAll();
   }
 
   private _currentCodeCategory = new BehaviorSubject<string>("all");
@@ -33,7 +32,7 @@ export class CodeCategoryService {
     return this.server.request('POST', 'codecategory', { "Name": name }, true)
       .subscribe((response: any) => {
         const currentCategories = this._allCategories.getValue();
-        let categories = [...currentCategories, new CodeCategoryModel(response.id, response.name)];
+        let categories = [...currentCategories, new CodeCategoryModel(response.name, response.id)];
         this._allCategories.next(categories);
       });
   }
@@ -47,14 +46,17 @@ export class CodeCategoryService {
       });
   }
 
-  private getAll() {
-    return this.server.request('GET', 'codecategory', {}, true)
+  public getAll(isForce: boolean = false): void {
+    var currentValues = this._allCategories.getValue();
+    if (currentValues.length == 0 || isForce) {      
+    this.server.request('GET', 'codecategory', {}, true)
       .subscribe((response: any) => {
         if (response && Array.isArray(response)) {
           let codeCategories: CodeCategoryModel[] = [];
-          codeCategories = response.map(item => new CodeCategoryModel(item.id, item.name));
+          codeCategories = response.map(item => new CodeCategoryModel(item.name, item.id));
           this._allCategories.next(codeCategories);
         }
       });
+    }
   }
 }

@@ -6,6 +6,8 @@ import { MaterialComponentModuleModule } from '../material-component-module/mate
 import { FormsModule } from '@angular/forms';
 import { CodeCatalogComponent } from './code-catalog/code-catalog.component';
 import { RouterModule } from '@angular/router';
+import { CodemirrorModule } from '@ctrl/ngx-codemirror';
+import { CodeEditorComponent } from './code-editor/code-editor.component';
 
 
 
@@ -13,13 +15,15 @@ import { RouterModule } from '@angular/router';
   declarations: [
     LoginFormComponent,
     RegisterFormComponent,
-    CodeCatalogComponent
+    CodeCatalogComponent,
+    CodeEditorComponent
   ],
   imports: [
     CommonModule,
     MaterialComponentModuleModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    CodemirrorModule
   ],
   exports: []
 })

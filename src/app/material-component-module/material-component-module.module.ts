@@ -4,7 +4,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule} from '@angular/material/icon';
-import { MatSnackBarModule} from "@angular/material/snack-bar"
+import { MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatCardModule} from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { MatSnackBarModule} from "@angular/material/snack-bar"
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCardModule,
+    MatDividerModule
   ]
 })
 export class MaterialComponentModuleModule { }

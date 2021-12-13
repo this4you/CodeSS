@@ -13,7 +13,6 @@ import { NotificationSubpageComponent } from './main-page/subpages/notification-
 import { HomeSubpageComponent } from './main-page/subpages/home-subpage/home-subpage.component';
 import { SettingSubpageComponent } from './main-page/subpages/setting-subpage/setting-subpage.component';
 import { FormsModule } from '@angular/forms';
-import { CodemirrorModule } from '@ctrl/ngx-codemirror';
 
 
 
@@ -34,8 +33,7 @@ import { CodemirrorModule } from '@ctrl/ngx-codemirror';
     ComponentsModule, 
     MaterialComponentModuleModule,
     RouterModule,
-    FormsModule,
-    CodemirrorModule 
+    FormsModule
   ],
   exports: [
     HomePageComponent

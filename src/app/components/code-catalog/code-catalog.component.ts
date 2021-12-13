@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CodeCategoryService } from 'src/app/services/api/code-category.service';
 import { CodeService } from 'src/app/services/api/code.service';
 
@@ -13,9 +14,16 @@ export class CodeCatalogComponent implements OnInit {
   public codeText: string = "";
 
   constructor(public codeCategoryService: CodeCategoryService,
-    public codeService: CodeService) { }
+    public codeService: CodeService,
+    public router: Router) { }
 
   ngOnInit(): void {
+    this.codeCategoryService.getAll();
+    this.codeCategoryService.currentCodeCategory.subscribe(category => {
+      if (category == "all") {
+        this.router.navigate(['/main/code/catalog/all']);
+      }
+    });
   }
 
   public createNewCategory() {
