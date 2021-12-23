@@ -1,1 +1,13 @@
-<p>code-editor works!</p>
+<div class="code-editor">
+    <div class="code-editor-tools">
+        SAVE
+    </div>
+    <div class="code-editor-text">
+        <ngx-codemirror [(ngModel)]="codeText" [options]="{
+            lineNumbers: true,
+            theme: 'material',
+            mode: 'javascript'
+        }">
+        </ngx-codemirror>
+    </div>
+</div>
