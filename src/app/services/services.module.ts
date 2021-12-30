@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from './auth/auth.service';
 import { ServerService } from './server.service';
 import { CodeCategoryService } from './common/code-category.service';
-import { CodeService } from './api/code.service';
+import { CodeService } from './common/code.service';
 import { CodeCategoryApiService } from './api/code-category-api.service';
+import { CodeApiService } from './api/code-api.service';
 
 
 
@@ -14,9 +15,12 @@ import { CodeCategoryApiService } from './api/code-category-api.service';
     CommonModule
   ],
   providers: [
+    CodeCategoryApiService,
+    CodeApiService, 
+
     AuthService, 
     ServerService,
-    CodeCategoryApiService, 
+    
     CodeCategoryService,
     CodeService
   ]
