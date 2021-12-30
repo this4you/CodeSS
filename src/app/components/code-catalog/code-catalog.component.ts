@@ -19,6 +19,7 @@ export class CodeCatalogComponent implements OnInit {
 
   ngOnInit(): void {
     this.codeCategoryService.getAll();
+    this.codeService.getAll();
     this.codeCategoryService.currentCodeCategory.subscribe(category => {
       if (category == "all") {
         this.router.navigate(['/main/code/catalog/all']);
