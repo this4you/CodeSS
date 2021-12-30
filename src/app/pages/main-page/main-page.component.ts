@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CodeCategoryService } from 'src/app/services/api/code-category.service';
+import { CodeCategoryService } from 'src/app/services/common/code-category.service';
 
 @Component({
   selector: 'code-ss-main-page',

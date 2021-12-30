@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { CodeCategoryModel } from '../../model/codecategory.model';
-import { ServerService } from '../server.service';
+import { CodeCategoryApiService } from '../api/code-category-api.service';
 
 @Injectable()
 export class CodeCategoryService {
 
   constructor(
-    private server: ServerService,
+    private codeCategoryApiService: CodeCategoryApiService
   ) {
   }
 
@@ -29,7 +28,7 @@ export class CodeCategoryService {
   }
 
   create(name: string) {
-    return this.server.request('POST', 'codecategory', { "Name": name }, true)
+    this.codeCategoryApiService.create(name)
       .subscribe((response: any) => {
         const currentCategories = this._allCategories.getValue();
         let categories = [...currentCategories, new CodeCategoryModel(response.name, response.id)];
@@ -37,8 +36,8 @@ export class CodeCategoryService {
       });
   }
 
-  delete(id:string) {
-    return this.server.request('DELETE', `codecategory/${id}`, {}, true)
+  delete(id: string) {
+    this.codeCategoryApiService.delete(id)
       .subscribe((response: any) => {
         const currentCategories = this._allCategories.getValue();
         let categories = currentCategories.filter(i => i.Id != id);
@@ -48,15 +47,15 @@ export class CodeCategoryService {
 
   public getAll(isForce: boolean = false): void {
     var currentValues = this._allCategories.getValue();
-    if (currentValues.length == 0 || isForce) {      
-    this.server.request('GET', 'codecategory', {}, true)
-      .subscribe((response: any) => {
-        if (response && Array.isArray(response)) {
-          let codeCategories: CodeCategoryModel[] = [];
-          codeCategories = response.map(item => new CodeCategoryModel(item.name, item.id));
-          this._allCategories.next(codeCategories);
-        }
-      });
+    if (currentValues.length == 0 || isForce) {
+      this.codeCategoryApiService.getAll()
+        .subscribe((response: any) => {
+          if (response && Array.isArray(response)) {
+            let codeCategories: CodeCategoryModel[] = [];
+            codeCategories = response.map(item => new CodeCategoryModel(item.name, item.id));
+            this._allCategories.next(codeCategories);
+          }
+        });
     }
   }
 }

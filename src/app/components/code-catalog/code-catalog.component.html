@@ -24,7 +24,7 @@
                     All
                 </button>
             </div>
-            <div *ngFor="let category of codeCategoryService.allCategories | async" class="category-item">
+            <div *ngFor="let category of getCategories() | async" class="category-item">
                 <button [routerLink]="['/main/code/catalog', category.Id]" routerLinkActive="router-link-active"
                     routerLinkActive="router-link-active" mat-raised-button
                     (click)="codeCategoryService.setCurrentCategory(category.Id)" color="primary">

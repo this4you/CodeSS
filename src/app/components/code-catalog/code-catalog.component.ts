@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CodeCategoryService } from 'src/app/services/api/code-category.service';
+import { CodeCategoryService } from 'src/app/services/common/code-category.service';
 import { CodeService } from 'src/app/services/api/code.service';
+import { filter, map, mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'code-ss-code-catalog',
@@ -32,6 +33,15 @@ export class CodeCatalogComponent implements OnInit {
       this.codeCategoryService.create(this.searchCategory);
       this.searchCategory = "";
     }
+  }
+
+  public getCategories() {
+    return this.codeCategoryService
+      .allCategories
+      .pipe(
+        map(categories => categories
+          .filter(value => this.searchCategory ? 
+            value.Name.toUpperCase().includes(this.searchCategory.toUpperCase()) : true)));
   }
 
   public deleteCategory(id) {
