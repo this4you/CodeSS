@@ -48,49 +48,51 @@
                 <div class="empty-block"></div>
             </div>
         </div>
-        <!-- Code edit zone
-        -->
-        <!-- <ngx-codemirror [(ngModel)]="codeText" [options]="{
-            lineNumbers: true,
-            theme: 'material',
-            mode: 'javascript'
-        }"></ngx-codemirror> -->
-        <!-- <div class="code-edit-content">
-            
-        </div> -->
-        <!-- <div> {{codeCategoryService.currentCodeCategory | async}}</div> -->
         <div class="code-items">
-            <div *ngFor="let code of codeService.allCode | async" class="code-item-outer">
-                <mat-card class="card">
-                    <div class="header">
-                        <div class="title">
-                            <mat-card-title>{{code.Name}}</mat-card-title>
-                            <mat-card-subtitle>
-                                {{code.Title}}
-                            </mat-card-subtitle>
+            <ng-container
+                *ngIf="getAllCode(this.codeCategoryService.currentCodeCategory | async) | async as codeColletion;">
+                <div *ngFor="let code of codeColletion" class="code-item-outer">
+                    <mat-card class="card">
+                        <div class="header">
+                            <div class="title">
+                                <mat-card-title>{{code.Name}}</mat-card-title>
+                                <mat-card-subtitle>
+                                    {{code.Title}}
+                                </mat-card-subtitle>
+                            </div>
+                            <div class="category-container">
+                                <button routerLinkActive="router-link-active" mat-raised-button color="primary">
+                                    <span class="text">{{code.Category.Name}}</span>
+                                </button>
+                            </div>
                         </div>
-                        <div class="category-container">
-                            <button routerLinkActive="router-link-active" mat-raised-button color="primary">
-                                <span class="text">{{code.Category.Name}}</span>
-                            </button>
-                        </div>
-                    </div>
-                    <mat-card-content>
+                        <mat-card-content>
 
-                    </mat-card-content>
-                    <mat-divider inset></mat-divider>
-                    <mat-card-actions class="actions">
-                        <button mat-button>
-                            <mat-icon>share</mat-icon>
-                        </button>
-                        <button mat-button>
-                            <mat-icon>delete</mat-icon>
-                        </button>
-                    </mat-card-actions>
-                    <!-- <mat-card-footer>
+                        </mat-card-content>
+                        <mat-divider inset></mat-divider>
+                        <mat-card-actions class="actions">
+                            <button mat-button>
+                                <mat-icon>share</mat-icon>
+                            </button>
+                            <button mat-button>
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </mat-card-actions>
+                        <!-- <mat-card-footer>
                     </mat-card-footer> -->
-                </mat-card>
-            </div>
+                    </mat-card>
+                </div>
+                <ng-container *ngIf="!codeColletion.length" [ngTemplateOutlet]="noItems"></ng-container>
+            </ng-container>
+            <!-- <div *ngIf="codeColletion?.length == 0">No data</div> -->
         </div>
     </div>
 </div>
+
+<ng-template #noItems>
+    <div class="no-items">
+        <div>
+            <h1>Code items not found</h1>
+        </div>
+    </div>
+</ng-template>

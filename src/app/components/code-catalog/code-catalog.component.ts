@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CodeCategoryService } from 'src/app/services/common/code-category.service';
 import { CodeService } from 'src/app/services/common/code.service';
-import { filter, map, mergeMap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'code-ss-code-catalog',
@@ -40,7 +40,7 @@ export class CodeCatalogComponent implements OnInit {
       .allCategories
       .pipe(
         map(categories => categories
-          .filter(value => this.searchCategory ? 
+          .filter(value => this.searchCategory ?
             value.Name.toUpperCase().includes(this.searchCategory.toUpperCase()) : true)));
   }
 
@@ -48,6 +48,14 @@ export class CodeCatalogComponent implements OnInit {
     event.stopPropagation();
     this.codeCategoryService.delete(id);
     this.codeCategoryService.setCurrentCategory("all");
+  }
+
+  public getAllCode(currentCategoryId) {
+    return this.codeService
+      .allCode
+      .pipe(
+        map(codes => codes
+          .filter(value => currentCategoryId == "all" ? true : value.Category.Id == currentCategoryId)));
   }
 
 }
