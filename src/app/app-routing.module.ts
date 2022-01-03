@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 import { CodeCatalogComponent } from './containers/code-catalog/code-catalog.component';
 import { CodeEditorComponent } from './containers/code-editor/code-editor.component';
 import { LoginFormComponent } from './containers/login-form/login-form.component';
 import { RegisterFormComponent } from './containers/register-form/register-form.component';
-import { NoAuthGuard } from './no-auth.guard';
+import { NoAuthGuard } from './guards/no-auth.guard';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { ChatSubpageComponent } from './pages/main-page/subpages/chat-subpage/chat-subpage.component';
