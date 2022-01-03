@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ComponentsModule } from '../containers/components.module';
+import { ContainersModule } from '../containers/containers.module';
 import { HomePageComponent } from './home-page/home-page.component';
 import { MaterialComponentModuleModule } from '../material-component-module/material-component-module.module';
 import { RouterModule } from '@angular/router';
@@ -30,7 +30,7 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    ComponentsModule, 
+    ContainersModule, 
     MaterialComponentModuleModule,
     RouterModule,
     FormsModule

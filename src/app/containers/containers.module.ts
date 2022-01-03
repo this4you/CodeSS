@@ -29,4 +29,4 @@ import { CodeEditModule } from '../modules/code-edit-module/code-edit.module';
   ],
   exports: []
 })
-export class ComponentsModule { }
+export class ContainersModule { }
