@@ -1,0 +1,27 @@
+<div class="code-content-tools">
+    <div class="add-button-container">
+        <div class="button-container">
+            <button mat-mini-fab color="primary" [routerLink]="['/main/code/create']">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+        <div class="empty-block"></div>
+    </div>
+</div>
+<div class="code-items">
+    <ng-container *ngIf="getAllCode(this.codeCategoryService.currentCodeCategory | async) | async as codeColletion;">
+        <div *ngFor="let code of codeColletion">
+            <code-ss-code-item [code]="code"></code-ss-code-item>
+        </div>
+        <ng-container *ngIf="!codeColletion.length" [ngTemplateOutlet]="noItems"></ng-container>
+    </ng-container>
+</div>
+
+
+<ng-template #noItems>
+    <div class="no-items">
+        <div>
+            <h1>Code items not found</h1>
+        </div>
+    </div>
+</ng-template>

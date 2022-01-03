@@ -1,0 +1,35 @@
+<div class="left-container-config">
+    <div class="search-container">
+        <mat-form-field>
+            <input [(ngModel)]="searchCategory" matInput type="search" placeholder="Categories" class="search-input">
+        </mat-form-field>
+    </div>
+    <div class="add-button-container">
+        <div class="button-container">
+            <button mat-mini-fab color="primary" aria-label="add category" (click)="createNewCategory()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+        <div class="empty-block"></div>
+    </div>
+</div>
+<div class="categories-list">
+    <div class="category-item">
+        <button mat-raised-button color="primary" [routerLink]="['/main/code/catalog/all']"
+            (click)="codeCategoryService.setCurrentCategory('all')" routerLinkActive="router-link-active"
+            [routerLinkActiveOptions]="{exact: true}">
+            All
+        </button>
+    </div>
+    <div *ngFor="let category of getCategories() | async" class="category-item">
+        <button [routerLink]="['/main/code/catalog', category.Id]" routerLinkActive="router-link-active"
+            routerLinkActive="router-link-active" mat-raised-button
+            (click)="codeCategoryService.setCurrentCategory(category.Id)" color="primary">
+            <div class="button-content">
+                <span class="text">{{category.Name}}</span>
+                <mat-icon (click)="deleteCategory(category.Id)" class="del-icon">close</mat-icon>
+            </div>
+
+        </button>
+    </div>
+</div>

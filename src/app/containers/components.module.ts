@@ -8,6 +8,7 @@ import { CodeCatalogComponent } from './code-catalog/code-catalog.component';
 import { RouterModule } from '@angular/router';
 import { CodemirrorModule } from '@ctrl/ngx-codemirror';
 import { CodeEditorComponent } from './code-editor/code-editor.component';
+import { CodeEditModule } from '../modules/code-edit-module/code-edit.module';
 
 
 
@@ -23,7 +24,8 @@ import { CodeEditorComponent } from './code-editor/code-editor.component';
     MaterialComponentModuleModule,
     FormsModule,
     RouterModule,
-    CodemirrorModule
+    CodemirrorModule,
+    CodeEditModule
   ],
   exports: []
 })

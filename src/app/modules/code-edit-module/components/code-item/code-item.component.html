@@ -1,0 +1,29 @@
+<div class="code-item-outer">
+    <mat-card class="card">
+        <div class="header">
+            <div class="title">
+                <mat-card-title>{{code.Name}}</mat-card-title>
+                <mat-card-subtitle>
+                    {{code.Title}}
+                </mat-card-subtitle>
+            </div>
+            <div class="category-container">
+                <button routerLinkActive="router-link-active" mat-raised-button color="primary">
+                    <span class="text">{{code.Category.Name}}</span>
+                </button>
+            </div>
+        </div>
+        <mat-card-content>
+
+        </mat-card-content>
+        <mat-divider inset></mat-divider>
+        <mat-card-actions class="actions">
+            <button mat-button>
+                <mat-icon>share</mat-icon>
+            </button>
+            <button mat-button>
+                <mat-icon>delete</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
