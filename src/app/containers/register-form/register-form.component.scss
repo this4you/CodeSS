@@ -6,4 +6,13 @@
     .mat-form-field {
         width:100%;
     }
+    .content-login-buttons-inner {
+        display: flex;
+        justify-content: space-between;
+        width: 80%;
+        button {
+            height: 50px;
+            width: 200px;
+        }
+    }
 }

@@ -1,18 +1,28 @@
 <div class="login">
-    <form #myForm="ngForm" (keydown)="keyDownFunction($event, myForm)">
-        <mat-form-field appearance="outline">
-            <mat-label>Login</mat-label>
-            <input name="login" required minlength="3" matInput
-                [(ngModel)]="authDate.Login" #login="ngModel" placeholder="Login">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Password</mat-label>
-            <input name="password" required type="password" matInput
-                [(ngModel)]="authDate.Password" #password="ngModel" [type]="hide ? 'password' : 'text'">
-            <button mat-icon-button matSuffix (click)="this.hide = !hide" [attr.aria-label]="'Hide password'"
-                [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-        </mat-form-field>
+    <form #myForm="ngForm" #form="ngForm" (ngSubmit)="submitForm(form)">
+        <div class="login-form">
+            <div class="fields">
+                <mat-form-field appearance="outline">
+                    <mat-label>Login</mat-label>
+                    <input name="login" required minlength="3" matInput [(ngModel)]="authDate.Login" #login="ngModel"
+                        placeholder="Login">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input name="password" required type="password" matInput [(ngModel)]="authDate.Password"
+                        #password="ngModel" [type]="hide ? 'password' : 'text'">
+                    <button mat-icon-button matSuffix (click)="this.hide = !hide" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+            <div class="buttons">
+                <button mat-raised-button color="primary" type="submit">Sing
+                    In</button>
+                <button [routerLink]="['/register']" mat-stroked-button color="primary">Sing
+                    Up</button>
+            </div>
+        </div>
     </form>
 </div>

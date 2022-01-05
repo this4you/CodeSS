@@ -1,26 +1,27 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { LoginModel } from 'src/app/model/login.model';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
-  selector: 'code-ss-login-form',
-  templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.scss']
+    selector: 'code-ss-login-form',
+    templateUrl: './login-form.component.html',
+    styleUrls: ['./login-form.component.scss']
 })
-export class LoginFormComponent implements OnInit {
+export class LoginFormComponent {
 
-  public hide: boolean = true;
-  public authDate: LoginModel = new LoginModel();
+    public hide: boolean = true;
+    public authDate: LoginModel = new LoginModel();
 
-  constructor(private authService: AuthService) { }
+    constructor(private authService: AuthService) { }
 
-  public async keyDownFunction(event, form) {
-    if (form.valid && event.keyCode === 13) {
-      await this.authService.login(this.authDate);
+    formSubmitted: boolean = false;
+    public async submitForm(form: NgForm) {
+        this.formSubmitted = true;
+        if (form.valid) {
+            debugger
+            await this.authService.login(this.authDate);
+            this.formSubmitted = false;
+        }
     }
-  }
-
-
-  ngOnInit(): void {
-  }
 }

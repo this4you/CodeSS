@@ -1,31 +1,39 @@
 <div class="register">
     <form #myForm="ngForm" (keydown)="keyDownFunction($event, myForm)">
-        <mat-form-field appearance="outline">
-            <mat-label>Login</mat-label>
-            <input name="login" [(ngModel)]="registerData.Login" #login="ngModel" matInput placeholder="Login">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Email</mat-label>
-            <input name="email" [(ngModel)]="registerData.Email" #email="ngModel" matInput type="email"
-                placeholder="Email">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Password</mat-label>
-            <input name="password" [(ngModel)]="registerData.Password" #password="ngModel" matInput
-                [type]="hide ? 'password' : 'text'">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Repeat Password</mat-label>
-            <input name="repearPassword" [(ngModel)]="registerData.RepeatPassword" #repearPassword="ngModel" matInput
-                [type]="repeatHide ? 'password' : 'text'">
-            <button mat-icon-button matSuffix (click)="repeatHide = !repeatHide" [attr.aria-label]="'Hide password'"
-                [attr.aria-pressed]="repeatHide">
-                <mat-icon>{{repeatHide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-        </mat-form-field>
+        <div class="content-login-form">
+            <mat-form-field appearance="outline">
+                <mat-label>Login</mat-label>
+                <input name="login" [(ngModel)]="registerData.Login" #login="ngModel" matInput placeholder="Login">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input name="email" [(ngModel)]="registerData.Email" #email="ngModel" matInput type="email"
+                    placeholder="Email">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input name="password" [(ngModel)]="registerData.Password" #password="ngModel" matInput
+                    [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Repeat Password</mat-label>
+                <input name="repearPassword" [(ngModel)]="registerData.RepeatPassword" #repearPassword="ngModel"
+                    matInput [type]="repeatHide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="repeatHide = !repeatHide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="repeatHide">
+                    <mat-icon>{{repeatHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <div class="content-login-buttons-inner">
+            <button [routerLink]="['/login']" mat-stroked-button color="primary" type="button">Sing
+                In</button>
+            <button mat-raised-button color="primary">Sing
+                Up</button>
+        </div>
     </form>
 </div>

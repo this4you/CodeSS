@@ -1,9 +1,26 @@
 .login {
-    display        : flex;
-    justify-content: center;
-    flex-direction : column;
-    width          : 300px;    
+    height: 460px;
+    width: 300px;    
     .mat-form-field {
         width:100%;
+    }
+    .login-form, form {
+        height: 100%;
+    }
+    .fields {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        height: 60%;
+    }
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+        width: 80%;
+        button {
+            height: 50px;
+            width: 200px;
+        }
     }
 }

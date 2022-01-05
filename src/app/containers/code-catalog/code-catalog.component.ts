@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CodeCategoryService } from 'src/app/services/common/code-category.service';
 import { CodeService } from 'src/app/services/common/code.service';
-import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'code-ss-code-catalog',
