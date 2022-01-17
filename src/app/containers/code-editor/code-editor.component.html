@@ -1,12 +1,30 @@
 <div class="code-editor">
     <div class="code-editor-tools">
-        SAVE
+        <form #myForm="ngForm">
+            <button mat-raised-button color="primary" class="save-button">
+                Save
+            </button>
+            <mat-form-field appearance="fill">
+                <mat-label>Title</mat-label>
+                <input matInput placeholder="Title" [(ngModel)]="codeData.Title" name="title">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Category</mat-label>
+                <mat-select [(ngModel)]="codeData.Category" name="category">
+                    <mat-option *ngFor="let category of this.codeCategoryService.allCategories | async"
+                        [value]="category">
+                        {{category.Name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </form>
     </div>
     <div class="code-editor-text">
-        <ngx-codemirror [(ngModel)]="codeText" [options]="{
+        <ngx-codemirror [(ngModel)]="codeData.Text" [options]="{
             lineNumbers: true,
             theme: 'material',
-            mode: 'javascript'
+            mode: 'javascript',
+            lineWrapping: true
         }">
         </ngx-codemirror>
     </div>
