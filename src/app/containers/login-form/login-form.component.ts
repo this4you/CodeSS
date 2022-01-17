@@ -16,10 +16,10 @@ export class LoginFormComponent {
     constructor(private authService: AuthService) { }
 
     formSubmitted: boolean = false;
+    
     public async submitForm(form: NgForm) {
         this.formSubmitted = true;
         if (form.valid) {
-            debugger
             await this.authService.login(this.authDate);
             this.formSubmitted = false;
         }

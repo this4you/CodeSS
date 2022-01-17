@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { RegisterModel } from 'src/app/model/register.model';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
@@ -7,21 +8,21 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.scss']
 })
-export class RegisterFormComponent implements OnInit {
+export class RegisterFormComponent {
   hide = true;
   repeatHide = true;
   public registerData: RegisterModel = new RegisterModel();
-  constructor(
-    protected authService: AuthService
-  ) { }
+  constructor( protected authService: AuthService) { }
 
-  ngOnInit(): void {
-  }
-
-  public async keyDownFunction(event, form) {
-    if (form.valid && event.keyCode === 13) {
-      await this.authService.register(this.registerData);      
-    }
+  formSubmitted: boolean = false;
+    
+  public async submitForm(form: NgForm) {
+      this.formSubmitted = true;
+      if (form.valid) {
+          debugger
+          await this.authService.register(this.registerData);
+          this.formSubmitted = false;
+      }
   }
 
 }
