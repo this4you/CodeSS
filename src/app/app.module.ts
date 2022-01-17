@@ -16,6 +16,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { MaterialComponentModuleModule } from './material-component-module/material-component-module.module';
 import { AuthInterceptor } from './services/auth/auth-interceptor.service';
 import { SpinnerInterceptor } from './services/spinner-interceptor.service';
+import { PipesModule } from './pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { SpinnerInterceptor } from './services/spinner-interceptor.service';
     ServicesModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    PipesModule
   ],
   providers: [
     AuthGuard,
