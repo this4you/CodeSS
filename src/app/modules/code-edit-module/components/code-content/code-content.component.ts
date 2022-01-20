@@ -4,27 +4,27 @@ import { CodeCategoryService } from 'src/app/services/common/code-category.servi
 import { CodeService } from 'src/app/services/common/code.service';
 
 @Component({
-  selector: 'code-ss-code-content',
-  templateUrl: './code-content.component.html',
-  styleUrls: ['./code-content.component.scss']
+    selector: 'code-ss-code-content',
+    templateUrl: './code-content.component.html',
+    styleUrls: ['./code-content.component.scss']
 })
 export class CodeContentComponent implements OnInit {
 
-  constructor(
-    public codeCategoryService: CodeCategoryService,
-    public codeService: CodeService,
-  ) { }
+    constructor(
+        public codeCategoryService: CodeCategoryService,
+        public codeService: CodeService,
+    ) { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
-  public getAllCode(currentCategoryId) {
-    return this.codeService
-        .allCode
-        .pipe(
-            map(codes => codes
-                .filter(value =>
-                    currentCategoryId == "all" ? true : value.Category.Id == currentCategoryId)));
-}
+    public getAllCode(currentCategoryId) {
+        return this.codeService
+            .allCode
+            .pipe(
+                map(codes => codes
+                    .filter(value =>
+                        currentCategoryId == "all" ? true : value.Category.Id == currentCategoryId)));
+    }
 
 }

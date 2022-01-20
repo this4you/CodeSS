@@ -1,18 +1,21 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CodeModel } from 'src/app/model/code.model';
+import { CodeService } from 'src/app/services/common/code.service';
 
 @Component({
     selector: 'code-ss-code-item',
     templateUrl: './code-item.component.html',
     styleUrls: ['./code-item.component.scss']
 })
-export class CodeItemComponent implements OnInit {
+export class CodeItemComponent {
 
-    @Input() code : CodeModel
+    @Input() code: CodeModel
 
-    constructor() { }
+    constructor(
+        public codeService: CodeService
+    ) { }
 
-    ngOnInit(): void {
+    delete() {
+        this.codeService.deleteCode(this.code.Id);
     }
-
 }

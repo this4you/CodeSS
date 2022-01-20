@@ -26,4 +26,8 @@ export class CodeApiService {
         return this.server.request('POST', 'code', request,true);
     }
 
+    public delete(id:string) {
+        return this.server.request('DELETE', `code/${id}`, {}, true);
+    }
+
 }

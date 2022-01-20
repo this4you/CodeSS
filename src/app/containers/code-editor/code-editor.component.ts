@@ -31,7 +31,7 @@ export class CodeEditorComponent implements OnInit {
             Text: this.codeData.Text,
             Title: this.codeData.Title
         };
-        this.codeService.CreateCode(request).add(() => {
+        this.codeService.createCode(request).add(() => {
             this.router.navigate(['/main/code/catalog/all]']);
         });
     }
