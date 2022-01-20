@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CodeModel } from 'src/app/model/code.model';
 import { CodeCreateRequest } from 'src/app/services/api/code-api.service';
 import { CodeCategoryService } from 'src/app/services/common/code-category.service';
@@ -17,11 +17,19 @@ export class CodeEditorComponent implements OnInit {
     constructor(
         public codeCategoryService: CodeCategoryService,
         public codeService: CodeService,
+        private activatedRoute: ActivatedRoute,
         private router: Router,
     ) { }
 
     ngOnInit(): void {
         this.codeCategoryService.getAll();
+        this.activatedRoute.params.subscribe(params => {
+            if (params?.codeId) {
+                this.codeService.getCode(params?.codeId).subscribe(response => {
+                    debugger
+                });
+            }
+        });
     }
 
     saveData(): void {

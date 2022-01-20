@@ -44,6 +44,10 @@ export class CodeService {
             });
     }
 
+    public getCode(id:string) {
+        return this.codeApi.get(id);
+    }
+
     public deleteCode(id: string) {
         return this.codeApi.delete(id)
             .subscribe((response: any) => {

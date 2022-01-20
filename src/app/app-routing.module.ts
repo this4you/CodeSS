@@ -27,6 +27,7 @@ const routes: Routes = [
         path: "code", component: CodeEditSubpageComponent,
         children: [
           {path: "create", component: CodeEditorComponent},
+          {path:"edit/:codeId", component: CodeEditorComponent },
           {path: "catalog/:category", component: CodeCatalogComponent},
         ]
      },

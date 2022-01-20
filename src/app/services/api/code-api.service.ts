@@ -22,6 +22,10 @@ export class CodeApiService {
         return this.server.request('GET', 'code', {}, true);
     }
 
+    public get(id:string) {
+        return this.server.request('GET', `code/${id}`, {}, true); 
+    }
+
     public create(request: CodeCreateRequest) {
         return this.server.request('POST', 'code', request,true);
     }
