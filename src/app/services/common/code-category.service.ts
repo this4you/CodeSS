@@ -31,7 +31,7 @@ export class CodeCategoryService {
     this.codeCategoryApiService.create(name)
       .subscribe((response: any) => {
         const currentCategories = this._allCategories.getValue();
-        let categories = [...currentCategories, new CodeCategoryModel(response.name, response.id)];
+        const categories = [...currentCategories, new CodeCategoryModel(response.name, response.id)];
         this._allCategories.next(categories);
       });
   }

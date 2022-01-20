@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { CodeCategoryModel } from 'src/app/model/codecategory.model';
 import { CodeModel } from '../../model/code.model';
-import { CodeApiService } from '../api/code-api.service';
+import { CodeApiService, CodeCreateRequest } from '../api/code-api.service';
 
 @Injectable()
 export class CodeService {
@@ -31,5 +31,16 @@ export class CodeService {
                     }
                 });
         }
+    }
+
+    public CreateCode(request: CodeCreateRequest) {
+       return this.codeApi.create(request)
+            .subscribe((response: any) => {
+                // TODO MAPPING
+                const currentCodes = this._allCode.getValue();
+                const codeCategory = new CodeCategoryModel(response.codeCategory.name, response.codeCategory.id);
+                const newCode = new CodeModel(response.id, response.name, response.title, response.text, codeCategory);
+                this._allCode.next([...currentCodes, newCode]);
+            });
     }
 }

@@ -19,7 +19,6 @@ export class RegisterFormComponent {
   public async submitForm(form: NgForm) {
       this.formSubmitted = true;
       if (form.valid) {
-          debugger
           await this.authService.register(this.registerData);
           this.formSubmitted = false;
       }

@@ -1,6 +1,15 @@
 import { Injectable } from '@angular/core';
 import { ServerService } from '../server.service';
 
+
+export type CodeCreateRequest = {
+    Name : string,
+    Title: string,
+    Text: string,
+    CodeCategoryId : string
+};
+
+
 @Injectable()
 export class CodeApiService {
 
@@ -11,6 +20,10 @@ export class CodeApiService {
 
     public getAll(isForce: boolean = false) {
         return this.server.request('GET', 'code', {}, true);
+    }
+
+    public create(request: CodeCreateRequest) {
+        return this.server.request('POST', 'code', request,true);
     }
 
 }

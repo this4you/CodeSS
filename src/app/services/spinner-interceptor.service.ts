@@ -1,5 +1,6 @@
 import { HttpContextToken, HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from "@angular/common/http"
 import { Injectable } from "@angular/core"
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { NgxSpinnerService } from "ngx-spinner";
 import { Observable, throwError } from "rxjs"
 import { catchError, map } from 'rxjs/operators';
@@ -9,7 +10,8 @@ export const IS_NEED_SPINER = new HttpContextToken<boolean>(() => false);
 @Injectable()
 export class SpinnerInterceptor implements HttpInterceptor {
     constructor(
-        private spinnerService: NgxSpinnerService
+        private spinnerService: NgxSpinnerService,
+        private _snackBar: MatSnackBar
     ) { }
 
     intercept(
@@ -22,6 +24,7 @@ export class SpinnerInterceptor implements HttpInterceptor {
                 .pipe(
                     catchError((error: HttpErrorResponse) => {
                         this.spinnerService.hide();
+                        this._snackBar.open(`Request error ${error.message}`, null, { duration: 4000 });
                         return throwError(error);
                     })
                 )
