@@ -2,7 +2,8 @@
   <header>
     <div class="header-content">
       <div class="header-content-icon">
-        <span>CodeSS</span>
+        <!-- <span>CodeSS</span> -->
+        <img src="assets/logo-icon.svg"/>
       </div>
       <div class="log-out" *ngIf="(authService.isLoggedIn | async)">
         <button color="primary" (click)="logout()" mat-mini-fab aria-label="Log-out">
