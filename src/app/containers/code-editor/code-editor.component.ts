@@ -13,7 +13,7 @@ import { CodeService } from 'src/app/services/common/code.service';
 })
 export class CodeEditorComponent implements OnInit {
     public codeData: CodeModel = new CodeModel();
-
+    protected isEditMode = false;
     constructor(
         public codeCategoryService: CodeCategoryService,
         public codeService: CodeService,
@@ -26,7 +26,14 @@ export class CodeEditorComponent implements OnInit {
         this.activatedRoute.params.subscribe(params => {
             if (params?.codeId) {
                 this.codeService.getCode(params?.codeId).subscribe(response => {
-                    debugger
+                    this.isEditMode = true;
+                    const resp:any = response;
+                    this.codeData = new CodeModel(
+                        resp.id,
+                        resp.name,
+                        resp.text,
+                        resp.codeCategory
+                        )
                 });
             }
         });

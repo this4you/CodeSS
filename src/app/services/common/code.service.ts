@@ -25,7 +25,7 @@ export class CodeService {
                 .subscribe((response: any) => {
                     if (response && Array.isArray(response)) {
                         let codes: CodeModel[] = [];
-                        codes = response.map(item => new CodeModel(item.id, item.name, item.title, item.text,
+                        codes = response.map(item => new CodeModel(item.id, item.name, item.text,
                             new CodeCategoryModel(item?.codeCategory?.name || "all", item?.codeCategory?.id)));
                         this._allCode.next(codes);
                     }
@@ -36,10 +36,9 @@ export class CodeService {
     public createCode(request: CodeCreateRequest) {
         return this.codeApi.create(request)
             .subscribe((response: any) => {
-                // TODO MAPPING
                 const currentCodes = this._allCode.getValue();
                 const codeCategory = new CodeCategoryModel(response.codeCategory.name, response.codeCategory.id);
-                const newCode = new CodeModel(response.id, response.name, response.title, response.text, codeCategory);
+                const newCode = new CodeModel(response.id, response.name, response.text, codeCategory);
                 this._allCode.next([...currentCodes, newCode]);
             });
     }

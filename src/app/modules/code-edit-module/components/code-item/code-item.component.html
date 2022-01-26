@@ -1,14 +1,13 @@
 <div class="code-item-outer">
-    <mat-card class="card">
+    <mat-card class="card" [routerLink]="['/main/code/edit/', code.Id]">
         <div class="header">
             <div class="title">
-                <mat-card-title>{{code.Name}}</mat-card-title>
+                <mat-card-title>{{code.Title}}</mat-card-title>
                 <mat-card-subtitle>
-                    {{code.Title}}
                 </mat-card-subtitle>
             </div>
             <div class="category-container">
-                <button routerLinkActive="router-link-active" mat-raised-button color="primary">
+                <button mat-raised-button color="primary">
                     <span class="text">{{code.Category.Name}}</span>
                 </button>
             </div>
