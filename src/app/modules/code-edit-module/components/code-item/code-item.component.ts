@@ -16,6 +16,7 @@ export class CodeItemComponent {
     ) { }
 
     delete() {
+        event.stopPropagation();
         this.codeService.deleteCode(this.code.Id);
     }
 }

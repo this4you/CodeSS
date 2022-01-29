@@ -5,6 +5,9 @@
         .actions {
             visibility: visible;
         }
+        .description {
+            color: #939393;
+        }
     }
 }
 .code-item-outer {
@@ -20,7 +23,19 @@
             display: flex;
             justify-content: space-between;
         }
+        .title {
+            max-height: 40px;
+            overflow: hidden;
+        }
+        .content {
+            height: 69px;
+            overflow: hidden;
+        }
         .actions {
+            position: absolute;
+            position: absolute;
+            top: 95px;
+            right: -5px;
             visibility: hidden;
             display: flex;
             justify-content: flex-end;

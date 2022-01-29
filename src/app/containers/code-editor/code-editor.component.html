@@ -10,9 +10,9 @@
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Category</mat-label>
-                <mat-select [(ngModel)]="codeData.Category" name="category">
+                <mat-select [(ngModel)]="selectedCategory" name="category">
                     <mat-option *ngFor="let category of this.codeCategoryService.allCategories | async"
-                        [value]="category">
+                        [value]="category.Name">
                         {{category.Name}}
                     </mat-option>
                 </mat-select>
@@ -22,7 +22,7 @@
     <div class="code-editor-text">
         <ngx-codemirror [(ngModel)]="codeData.Text" [options]="{
             lineNumbers: true,
-            theme: 'material',
+            theme: 'material-palenight',
             mode: 'javascript',
             lineWrapping: true
         }">

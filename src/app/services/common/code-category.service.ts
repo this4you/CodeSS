@@ -36,6 +36,10 @@ export class CodeCategoryService {
       });
   }
 
+  getCategoryByName(name: string) {
+    return this._allCategories.getValue().find(c => c.Name === name);
+  }
+
   delete(id: string) {
     this.codeCategoryApiService.delete(id)
       .subscribe((response: any) => {

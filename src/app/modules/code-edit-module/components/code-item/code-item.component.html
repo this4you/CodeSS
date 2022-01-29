@@ -3,8 +3,6 @@
         <div class="header">
             <div class="title">
                 <mat-card-title>{{code.Title}}</mat-card-title>
-                <mat-card-subtitle>
-                </mat-card-subtitle>
             </div>
             <div class="category-container">
                 <button mat-raised-button color="primary">
@@ -12,17 +10,25 @@
                 </button>
             </div>
         </div>
-        <mat-card-content>
-
-        </mat-card-content>
         <mat-divider inset></mat-divider>
-        <mat-card-actions class="actions">
-            <button mat-button>
-                <mat-icon>share</mat-icon>
-            </button>
-            <button mat-button (click)="delete()">
-                <mat-icon>delete</mat-icon>
-            </button>
-        </mat-card-actions>
+        <mat-card-content class="content">
+            <h4 class="description">
+                <ng-template [ngIf]="code.DiscriptionText">
+                    {{code.DiscriptionText}}
+                </ng-template>
+                <ng-template [ngIf]="!code.DiscriptionText">
+                    No description
+                </ng-template>
+            </h4>
+            <!-- {{code.DiscriptionText}} -->
+            <mat-card-actions class="actions">
+                <button mat-button>
+                    <mat-icon>share</mat-icon>
+                </button>
+                <button mat-button (click)="delete()">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card-content>
     </mat-card>
 </div>
