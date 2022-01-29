@@ -35,11 +35,7 @@ export class CodeCategoryService {
         this._allCategories.next(categories);
       });
   }
-
-  getCategoryByName(name: string) {
-    return this._allCategories.getValue().find(c => c.Name === name);
-  }
-
+  
   getCategoryById(id: string) {
     return this._allCategories.getValue().find(c => c.Id === id);
   }

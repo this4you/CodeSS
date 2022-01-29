@@ -36,7 +36,7 @@ export class CodeEditorComponent implements OnInit {
                         resp.text
                     );
                     if (resp.codeCategory) {
-                        this.selectedCategory = resp.codeCategory.name;
+                        this.selectedCategory = resp.codeCategory.id;
                     }
                 });
             }
@@ -53,7 +53,7 @@ export class CodeEditorComponent implements OnInit {
 
     updateData(): void {
         const currentCategory: CodeCategoryModel =
-            this.codeCategoryService.getCategoryByName(this.selectedCategory);
+            this.codeCategoryService.getCategoryById(this.selectedCategory);
         const request: CodeUpdateRequest = {
             Id: this.codeData.Id,
             Name: this.codeData.Title,
@@ -66,7 +66,7 @@ export class CodeEditorComponent implements OnInit {
 
     saveData(): void {
         const currentCategory: CodeCategoryModel =
-            this.codeCategoryService.getCategoryByName(this.selectedCategory);
+            this.codeCategoryService.getCategoryById(this.selectedCategory);
         const request: CodeCreateRequest = {
             CodeCategoryId: currentCategory.Id,
             Name: this.codeData.Title,

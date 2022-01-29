@@ -12,7 +12,7 @@
                 <mat-label>Category</mat-label>
                 <mat-select [(ngModel)]="selectedCategory" name="category">
                     <mat-option *ngFor="let category of this.codeCategoryService.allCategories | async"
-                        [value]="category.Name">
+                        [value]="category.Id">
                         {{category.Name}}
                     </mat-option>
                 </mat-select>
