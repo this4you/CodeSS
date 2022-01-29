@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { CodeCategoryModel } from 'src/app/model/codecategory.model';
 import { CodeModel } from '../../model/code.model';
-import { CodeApiService, CodeCreateRequest } from '../api/code-api.service';
+import { CodeApiService, CodeCreateRequest, CodeUpdateRequest } from '../api/code-api.service';
+import { CodeCategoryService } from './code-category.service';
 
 @Injectable()
 export class CodeService {
 
     constructor(
-        private codeApi: CodeApiService
+        private codeApi: CodeApiService,
+        public codeCategoryService: CodeCategoryService,
     ) { }
 
     private _allCode = new BehaviorSubject<CodeModel[]>([]);
@@ -40,6 +42,19 @@ export class CodeService {
                 const codeCategory = new CodeCategoryModel(response.codeCategory.name, response.codeCategory.id);
                 const newCode = new CodeModel(response.id, response.name, response.text, "", codeCategory);
                 this._allCode.next([...currentCodes, newCode]);
+            });
+    }
+
+    public updateCode(request: CodeUpdateRequest) {
+        return this.codeApi.update(request)
+            .subscribe((response: any) => {
+                const currentCodes = this._allCode.getValue();
+                const code = currentCodes.find(c => c.Id === request.Id);
+                code.Text = request.Text,
+                code.Title = request.Name,
+                code.Category = this.codeCategoryService.getCategoryById(request.CodeCategoryId)
+                this._allCode.next([...currentCodes]);
+
             });
     }
 

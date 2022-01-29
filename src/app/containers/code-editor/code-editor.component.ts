@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CodeModel } from 'src/app/model/code.model';
 import { CodeCategoryModel } from 'src/app/model/codecategory.model';
-import { CodeCreateRequest } from 'src/app/services/api/code-api.service';
+import { CodeCreateRequest, CodeUpdateRequest } from 'src/app/services/api/code-api.service';
 import { CodeCategoryService } from 'src/app/services/common/code-category.service';
 import { CodeService } from 'src/app/services/common/code.service';
 
@@ -43,14 +43,34 @@ export class CodeEditorComponent implements OnInit {
         });
     }
 
+    onSaveButtonClick() {
+        if (this.isEditMode) {
+            this.updateData();
+        } else {
+            this.saveData();
+        }
+    }
+
+    updateData(): void {
+        const currentCategory: CodeCategoryModel =
+            this.codeCategoryService.getCategoryByName(this.selectedCategory);
+        const request: CodeUpdateRequest = {
+            Id: this.codeData.Id,
+            Name: this.codeData.Title,
+            Text: this.codeData.Text,
+            CodeCategoryId: currentCategory.Id
+        };
+
+        this.codeService.updateCode(request);      
+    }
+
     saveData(): void {
         const currentCategory: CodeCategoryModel =
             this.codeCategoryService.getCategoryByName(this.selectedCategory);
         const request: CodeCreateRequest = {
             CodeCategoryId: currentCategory.Id,
             Name: this.codeData.Title,
-            Text: this.codeData.Text,
-            Title: this.codeData.Title
+            Text: this.codeData.Text
         };
 
         this.codeService.createCode(request).add(() => {

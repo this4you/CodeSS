@@ -40,6 +40,10 @@ export class CodeCategoryService {
     return this._allCategories.getValue().find(c => c.Name === name);
   }
 
+  getCategoryById(id: string) {
+    return this._allCategories.getValue().find(c => c.Id === id);
+  }
+
   delete(id: string) {
     this.codeCategoryApiService.delete(id)
       .subscribe((response: any) => {

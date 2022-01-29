@@ -3,11 +3,17 @@ import { ServerService } from '../server.service';
 
 
 export type CodeCreateRequest = {
-    Name : string,
-    Title: string,
+    Name: string,
     Text: string,
-    CodeCategoryId : string
+    CodeCategoryId: string
 };
+
+export type CodeUpdateRequest = {
+    Id: string,
+    Name: string,
+    Text: string,
+    CodeCategoryId: string 
+}
 
 
 @Injectable()
@@ -22,16 +28,20 @@ export class CodeApiService {
         return this.server.request('GET', 'code', {}, true);
     }
 
-    public get(id:string) {
-        return this.server.request('GET', `code/${id}`, {}, true); 
+    public get(id: string) {
+        return this.server.request('GET', `code/${id}`, {}, true);
     }
 
     public create(request: CodeCreateRequest) {
-        return this.server.request('POST', 'code', request,true);
+        return this.server.request('POST', 'code', request, true);
     }
 
-    public delete(id:string) {
+    public delete(id: string) {
         return this.server.request('DELETE', `code/${id}`, {}, true);
+    }
+
+    public update(request: CodeUpdateRequest) {
+        return this.server.request('PUT', `code/${request.Id}`, request, true);
     }
 
 }
