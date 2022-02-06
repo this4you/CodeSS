@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { MaterialComponentModuleModule } from 'src/app/material-component-module/material-component-module.module';
 import { CodeContentComponent } from './components/code-content/code-content.component';
 import { CodeItemComponent } from './components/code-item/code-item.component';
+import { CommonComponentsModule } from 'src/app/common-components/common-components.module';
 
 
 
@@ -19,7 +20,8 @@ import { CodeItemComponent } from './components/code-item/code-item.component';
         CommonModule,
         MaterialComponentModuleModule,
         FormsModule,
-        RouterModule
+        RouterModule,
+        CommonComponentsModule
     ],
     exports: [
         CategoryListComponent,

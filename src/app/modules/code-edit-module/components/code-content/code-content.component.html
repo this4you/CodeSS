@@ -1,12 +1,5 @@
 <div class="code-content-tools">
-    <div class="add-button-container">
-        <div class="button-container">
-            <button mat-mini-fab color="primary" [routerLink]="['/main/code/create']">
-                <mat-icon>add</mat-icon>
-            </button>
-        </div>
-        <div class="empty-block"></div>
-    </div>
+    <code-ss-add-button routerLink = '/main/code/create'></code-ss-add-button>
 </div>
 <div class="code-items">
     <ng-container *ngIf="getAllCode(this.codeCategoryService.currentCodeCategory | async) | async as codeColletion;">

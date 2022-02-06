@@ -17,6 +17,7 @@ import { MaterialComponentModuleModule } from './material-component-module/mater
 import { AuthInterceptor } from './services/auth/auth-interceptor.service';
 import { SpinnerInterceptor } from './services/spinner-interceptor.service';
 import { PipesModule } from './pipes/pipes.module';
+import { CommonComponentsModule } from './common-components/common-components.module';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { PipesModule } from './pipes/pipes.module';
     ReactiveFormsModule,
     HttpClientModule,
     NgxSpinnerModule,
-    PipesModule
+    PipesModule,
+    CommonComponentsModule
   ],
   providers: [
     AuthGuard,

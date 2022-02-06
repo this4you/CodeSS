@@ -4,13 +4,8 @@
             <input [(ngModel)]="searchCategory" matInput type="search" placeholder="Categories" class="search-input">
         </mat-form-field>
     </div>
-    <div class="add-button-container">
-        <div class="button-container">
-            <button mat-mini-fab color="primary" aria-label="add category" (click)="createNewCategory()">
-                <mat-icon>add</mat-icon>
-            </button>
-        </div>
-        <div class="empty-block"></div>
+    <div class="button-outer">
+        <code-ss-add-button (click)="createNewCategory()"></code-ss-add-button>
     </div>
 </div>
 <div class="categories-list">

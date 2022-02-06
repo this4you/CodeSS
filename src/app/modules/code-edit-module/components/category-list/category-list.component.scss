@@ -5,18 +5,13 @@
     justify-content: center;
     align-items: center;
 }
-.add-button-container {
+.button-outer {    
+    margin-bottom: 15px;
     width: 100%;
     display: flex;
-    margin-bottom: 20px;
-    .button-container {
-        flex: 1;
-        justify-content: center;
-        display: flex;
-    }
-    .empty-block {
-        width: 10px;
-    }
+    justify-content: center;
+    margin-left: -6px;
+
 }
 .categories-list {
     overflow-y: scroll;
