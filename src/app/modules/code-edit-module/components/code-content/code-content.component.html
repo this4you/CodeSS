@@ -1,15 +1,19 @@
 <div class="code-content-tools">
-    <code-ss-add-button routerLink = '/main/code/create'></code-ss-add-button>
+    <code-ss-add-button routerLink='/main/code/create'></code-ss-add-button>
 </div>
 <div class="code-items">
     <ng-container *ngIf="getAllCode(this.codeCategoryService.currentCodeCategory | async) | async as codeColletion;">
         <div *ngFor="let code of codeColletion">
             <code-ss-code-item [code]="code"></code-ss-code-item>
         </div>
+        <div class="load-more-container">
+            <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+                <mat-icon>arrow_downward</mat-icon>
+            </button>
+        </div>
         <ng-container *ngIf="!codeColletion.length" [ngTemplateOutlet]="noItems"></ng-container>
     </ng-container>
 </div>
-
 
 <ng-template #noItems>
     <div class="no-items">
