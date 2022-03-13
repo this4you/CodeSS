@@ -17,11 +17,23 @@ export class CodeCatalogComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+        const count = 9; // initial count, TODO take from screen size
+        const params = {
+            limit: count
+        };
         this.codeCategoryService.getAll();
-        this.codeService.getAll();
+        // this.codeService.getAll({
+        //     limit: count
+        // });
         this.codeCategoryService.currentCodeCategory.subscribe(category => {
             if (category == "all") {
                 this.router.navigate(['/main/code/catalog/all']);
+                this.codeService.getAll({limit: count}, true);
+            } else {
+                this.codeService.getAll({
+                    limit: count,
+                    categoryId: category
+                }, true);
             }
         });
     }

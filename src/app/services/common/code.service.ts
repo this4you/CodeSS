@@ -20,10 +20,10 @@ export class CodeService {
         return this._allCode.asObservable();
     }
 
-    public getAll(isForce: boolean = false): void {
+    public getAll(params: object = {}, isForce: boolean = false): void {
         var currentValues = this._allCode.getValue();
         if (currentValues.length == 0 || isForce) {
-            this.codeApi.getAll()
+            this.codeApi.getAll(params)
                 .subscribe((response: any) => {
                     if (response && Array.isArray(response)) {
                         let codes: CodeModel[] = [];

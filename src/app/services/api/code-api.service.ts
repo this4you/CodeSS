@@ -24,8 +24,8 @@ export class CodeApiService {
     ) {
     }
 
-    public getAll(isForce: boolean = false) {
-        return this.server.request('GET', 'code', {}, true);
+    public getAll(params: object = {}) {
+        return this.server.request('GET', 'code', params, true);
     }
 
     public get(id: string) {
