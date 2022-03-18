@@ -18,17 +18,12 @@ export class CodeContentComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    public getAllCode(currentCategoryId: string, limit: number = 0) {
-        // return this.codeService.getAll({
-        //     limit: limit,
-        //     categoryId: currentCategoryId
-        // }, true);
-        return this.codeService
-            .allCode
-            .pipe(
-                map(codes => codes
-                    .filter(value =>
-                        currentCategoryId == "all" ? true : value.Category.Id == currentCategoryId)));
+    public loadMore() {
+        this.codeService.loadCode();
+    }
+
+    public getAllCode() {
+        return this.codeService.allCode;
     }
 
 }

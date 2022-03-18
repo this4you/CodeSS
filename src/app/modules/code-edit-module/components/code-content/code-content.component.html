@@ -2,12 +2,12 @@
     <code-ss-add-button routerLink='/main/code/create'></code-ss-add-button>
 </div>
 <div class="code-items">
-    <ng-container *ngIf="getAllCode(this.codeCategoryService.currentCodeCategory | async) | async as codeColletion;">
+    <ng-container *ngIf="getAllCode() | async as codeColletion;">
         <div *ngFor="let code of codeColletion">
             <code-ss-code-item [code]="code"></code-ss-code-item>
         </div>
-        <div *ngIf="codeColletion.length >= 9" class="load-more-container">
-            <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+        <div *ngIf="codeColletion.length >= this.codeService.limit" class="load-more-container">
+            <button mat-icon-button color="primary" (click)="loadMore()" aria-label="Example icon button with a home icon">
                 <mat-icon>arrow_downward</mat-icon>
             </button>
         </div>

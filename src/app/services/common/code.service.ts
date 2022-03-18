@@ -13,11 +13,32 @@ export class CodeService {
         public codeCategoryService: CodeCategoryService,
     ) { }
 
+    get limit() {
+        return 9;
+    }
+
     private _allCode = new BehaviorSubject<CodeModel[]>([]);
 
 
     get allCode() {
         return this._allCode.asObservable();
+    }
+
+    public getAllCodeValue() {
+        return this._allCode.getValue();
+    }
+
+    public loadCode(categoryId: string = "", isInitLoad: boolean = false) {
+        categoryId = categoryId || this.codeCategoryService.getCurrentCategoryId();
+        const limit = isInitLoad ? this.limit : this.getAllCodeValue().length + this.limit;
+        if (categoryId == "all") {
+            this.getAll({limit: limit}, true);
+        } else {
+            this.getAll({
+                limit: limit,
+                categoryId: categoryId
+            }, true);
+        }
     }
 
     public getAll(params: object = {}, isForce: boolean = false): void {
