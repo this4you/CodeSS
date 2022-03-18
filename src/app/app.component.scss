@@ -28,6 +28,17 @@ header {
             }
         }
     }
+    .user-control {
+        display: flex;
+        color: var(--first-color);
+        .user-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            margin-right: 30px;
+        }
+    }
 }
 main {
     height: calc(100vh - 70px - 30px);

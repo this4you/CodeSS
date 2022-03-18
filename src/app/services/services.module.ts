@@ -6,6 +6,7 @@ import { CodeCategoryService } from './common/code-category.service';
 import { CodeService } from './common/code.service';
 import { CodeCategoryApiService } from './api/code-category-api.service';
 import { CodeApiService } from './api/code-api.service';
+import { UserApiService } from './api/user-api.service';
 
 
 
@@ -22,7 +23,9 @@ import { CodeApiService } from './api/code-api.service';
     ServerService,
     
     CodeCategoryService,
-    CodeService
+    CodeService,
+
+    UserApiService
   ]
 })
 export class ServicesModule { }

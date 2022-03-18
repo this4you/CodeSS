@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { initUserData, loadUserData } from 'src/app/actions/user.actions';
 import { CodeCategoryService } from 'src/app/services/common/code-category.service';
 
 @Component({
@@ -8,9 +10,15 @@ import { CodeCategoryService } from 'src/app/services/common/code-category.servi
 })
 export class MainPageComponent implements OnInit {
 
-  constructor(public codeCategoryService: CodeCategoryService) { }
+  constructor(public codeCategoryService: CodeCategoryService,
+    private store: Store) { }
 
   ngOnInit(): void {
+      this.store.dispatch(loadUserData());
+    // this.store.dispatch(initUserData({
+    //     email: "me_vlad@ukr.net",
+    //     login: "Vlad"
+    // }))
   }
 
 }

@@ -18,45 +18,59 @@ import { AuthInterceptor } from './services/auth/auth-interceptor.service';
 import { SpinnerInterceptor } from './services/spinner-interceptor.service';
 import { PipesModule } from './pipes/pipes.module';
 import { CommonComponentsModule } from './common-components/common-components.module';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { UserEffects } from './effects/user.effects';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    AppRoutingModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production,
-      // Register the ServiceWorker as soon as the app is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
-    }),
-    MaterialComponentModuleModule,
-    BrowserAnimationsModule,
-    PagesModule,
-    ServicesModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    NgxSpinnerModule,
-    PipesModule,
-    CommonComponentsModule
-  ],
-  providers: [
-    AuthGuard,
-    NoAuthGuard,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: SpinnerInterceptor,
-      multi: true,
-    }
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        AppRoutingModule,
+        ServiceWorkerModule.register('ngsw-worker.js', {
+            enabled: environment.production,
+            // Register the ServiceWorker as soon as the app is stable
+            // or after 30 seconds (whichever comes first).
+            registrationStrategy: 'registerWhenStable:30000'
+        }),
+        MaterialComponentModuleModule,
+        BrowserAnimationsModule,
+        PagesModule,
+        ServicesModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        NgxSpinnerModule,
+        PipesModule,
+        CommonComponentsModule,
+        StoreModule.forRoot(reducers, {
+            metaReducers
+        }),
+        StoreDevtoolsModule.instrument({
+            maxAge: 25, // Retains last 25 states
+            logOnly: environment.production, // Restrict extension to log-only mode
+            autoPause: true, // Pauses recording actions and state changes when the extension window is not open
+        }),
+        EffectsModule.forRoot([UserEffects])
+    ],
+    providers: [
+        AuthGuard,
+        NoAuthGuard,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true,
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: SpinnerInterceptor,
+            multi: true,
+        }
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

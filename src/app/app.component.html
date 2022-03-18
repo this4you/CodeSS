@@ -1,24 +1,29 @@
 <div class="wrapp">
-  <header>
-    <div class="header-content">
-      <div class="header-content-icon">
-        <!-- <span>CodeSS</span> -->
-        <img src="assets/logo-icon.svg"/>
-      </div>
-      <div class="log-out" *ngIf="(authService.isLoggedIn | async)">
-        <button color="primary" (click)="logout()" mat-mini-fab aria-label="Log-out">
-          <mat-icon>logout</mat-icon>
-        </button>
-      </div>
-    </div>
-  </header>
-  <main>
-    <div class="main-inner">
-      <router-outlet class="main"></router-outlet>
-    </div>
-  </main>
-  <footer></footer>
-  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
-    <p style="color: white"> Loading... </p>
-  </ngx-spinner>
+    <header>
+        <div class="header-content">
+            <div class="header-content-icon">
+                <!-- <span>CodeSS</span> -->
+                <img src="assets/logo-icon.svg" />
+            </div>
+            <div class="user-control">
+                <div class="user-info">
+                    {{login$ | async}}
+                </div>
+                <div class="log-out" *ngIf="(authService.isLoggedIn | async)">
+                    <button color="primary" (click)="logout()" mat-mini-fab aria-label="Log-out">
+                        <mat-icon>logout</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="main-inner">
+            <router-outlet class="main"></router-outlet>
+        </div>
+    </main>
+    <footer></footer>
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
+        <p style="color: white"> Loading... </p>
+    </ngx-spinner>
 </div>
