@@ -10,6 +10,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
+import {MatMenuModule} from "@angular/material/menu"
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { MatTableModule } from '@angular/material/table';
     MatDividerModule,
     MatOptionModule,
     MatSelectModule,
-    MatTableModule  
+    MatTableModule,
+    MatMenuModule
   ]
 })
 export class MaterialComponentModuleModule { }

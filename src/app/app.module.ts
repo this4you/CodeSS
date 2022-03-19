@@ -23,6 +23,7 @@ import { reducers, metaReducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from './effects/user.effects';
+import { UserControlModule } from './modules/user-control-module/user-control.module';
 
 @NgModule({
     declarations: [
@@ -47,6 +48,7 @@ import { UserEffects } from './effects/user.effects';
         NgxSpinnerModule,
         PipesModule,
         CommonComponentsModule,
+        UserControlModule,
         StoreModule.forRoot(reducers, {
             metaReducers
         }),

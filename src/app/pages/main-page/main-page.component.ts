@@ -15,10 +15,6 @@ export class MainPageComponent implements OnInit {
 
   ngOnInit(): void {
       this.store.dispatch(loadUserData());
-    // this.store.dispatch(initUserData({
-    //     email: "me_vlad@ukr.net",
-    //     login: "Vlad"
-    // }))
   }
 
 }
