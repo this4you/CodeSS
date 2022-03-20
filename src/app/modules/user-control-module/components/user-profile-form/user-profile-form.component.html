@@ -1,0 +1,30 @@
+<div class="profile-setting">
+    <div class="profile-form">
+        <h2>My profile</h2>
+        <p>
+            <mat-form-field required appearance="legacy">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Placeholder" required>
+                <mat-hint>Your name</mat-hint>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="legacy">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Placeholder" required>
+                <mat-hint>your work email</mat-hint>
+            </mat-form-field>
+        </p>
+        <p>
+            <button mat-raised-button color="accent">Accent</button>
+        </p>
+    </div>
+    <div class="avatar-container">
+        <input type="file" accept=".jpg ,.jpeg,.png,.svg" class="file-input"
+       (change)="onFileSelected($event)" #fileUpload>
+        <div class="avatar">V</div>
+        <button mat-mini-fab (click)="fileUpload.click()" color="primary" aria-label="Example icon button with a menu icon">
+            <mat-icon>upload</mat-icon>
+        </button>
+    </div>
+</div>

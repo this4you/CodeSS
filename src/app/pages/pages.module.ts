@@ -13,6 +13,7 @@ import { NotificationSubpageComponent } from './main-page/subpages/notification-
 import { HomeSubpageComponent } from './main-page/subpages/home-subpage/home-subpage.component';
 import { SettingSubpageComponent } from './main-page/subpages/setting-subpage/setting-subpage.component';
 import { FormsModule } from '@angular/forms';
+import { UserControlModule } from '../modules/user-control-module/user-control.module';
 
 
 
@@ -31,6 +32,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ContainersModule, 
+    UserControlModule,
     MaterialComponentModuleModule,
     RouterModule,
     FormsModule

@@ -5,13 +5,15 @@ import { RouterModule } from '@angular/router';
 import { MaterialComponentModuleModule } from 'src/app/material-component-module/material-component-module.module';
 import { CommonComponentsModule } from 'src/app/common-components/common-components.module';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { UserProfileFormComponent } from './components/user-profile-form/user-profile-form.component';
 
 
 
 
 @NgModule({
     declarations: [
-        UserProfileComponent
+        UserProfileComponent,
+        UserProfileFormComponent
     ],
     imports: [
         CommonModule,
@@ -21,7 +23,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
         CommonComponentsModule
     ],
     exports: [
-        UserProfileComponent
+        UserProfileComponent,
+        UserProfileFormComponent
     ]
 })
 export class UserControlModule { }

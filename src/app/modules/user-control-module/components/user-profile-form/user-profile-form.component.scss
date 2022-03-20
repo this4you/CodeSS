@@ -1,0 +1,32 @@
+.profile-setting {
+    .profile-form {
+        margin-right: 50px;
+    }
+    display: flex;
+    margin: 30px;
+    background: #f6f6f6;
+    padding: 20px;
+    .avatar-container {
+        position: relative;
+        button {
+            position: absolute;
+            top: 107px;
+            left: 110px;
+        }
+    }
+    .avatar {
+        width: 150px;
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 50px;
+        background: white;
+        border-radius: 100px;
+        color: #673ab7;
+    }
+}
+
+.file-input {
+    display: none;
+}
