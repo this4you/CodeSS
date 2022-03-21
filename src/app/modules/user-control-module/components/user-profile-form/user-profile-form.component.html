@@ -22,7 +22,10 @@
     <div class="avatar-container">
         <input type="file" accept=".jpg ,.jpeg,.png,.svg" class="file-input"
        (change)="onFileSelected($event)" #fileUpload>
-        <div class="avatar">V</div>
+        <div *ngIf="!ImgUrl && Login" class="avatar">{{Login[0]?.toUpperCase()}}</div>
+        <div *ngIf="ImgUrl" class="avatar-image-container">
+            <img class="avatar" [src]="ImgUrl " alt="Red dot" />
+        </div>
         <button mat-mini-fab (click)="fileUpload.click()" color="primary" aria-label="Example icon button with a menu icon">
             <mat-icon>upload</mat-icon>
         </button>

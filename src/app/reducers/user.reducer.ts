@@ -1,15 +1,21 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import * as UserActions from '../actions/user.actions';
+import { User } from '../model/user.model';
+const initialState: User = {
+    name: '',
+    login: '',
+    email: '',
+    avatar: ''
+}
 export const UserReducer = createReducer(
-    {
-        login: "",
-        email: ""
-    },
+    initialState,
     on(UserActions.initUserData, (state, payload) => {
         return ({
             ...state,
+            name: payload.name,
+            login: payload.login,
             email: payload.email,
-            login: payload.login
+            avatar: payload.avatar
         })
     })
 );

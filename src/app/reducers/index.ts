@@ -7,9 +7,10 @@ import {
 } from '@ngrx/store';
 import { UserReducer } from './user.reducer';
 import { environment } from '../../environments/environment';
+import { User } from '../model/user.model';
 
 export interface State {
-    user: {login: string; email:string;}
+    user: User
 }
 
 export const reducers: ActionReducerMap<State> = {
