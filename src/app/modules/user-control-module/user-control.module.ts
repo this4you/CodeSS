@@ -6,6 +6,7 @@ import { MaterialComponentModuleModule } from 'src/app/material-component-module
 import { CommonComponentsModule } from 'src/app/common-components/common-components.module';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserProfileFormComponent } from './components/user-profile-form/user-profile-form.component';
+import { UserAvatarComponent } from './components/user-avatar/user-avatar.component';
 
 
 
@@ -13,7 +14,8 @@ import { UserProfileFormComponent } from './components/user-profile-form/user-pr
 @NgModule({
     declarations: [
         UserProfileComponent,
-        UserProfileFormComponent
+        UserProfileFormComponent,
+        UserAvatarComponent
     ],
     imports: [
         CommonModule,
@@ -24,7 +26,8 @@ import { UserProfileFormComponent } from './components/user-profile-form/user-pr
     ],
     exports: [
         UserProfileComponent,
-        UserProfileFormComponent
+        UserProfileFormComponent,
+        UserAvatarComponent
     ]
 })
 export class UserControlModule { }

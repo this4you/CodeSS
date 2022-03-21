@@ -1,7 +1,4 @@
-<div *ngIf="login$ | async as login" class="name-icon" [matMenuTriggerFor]="menu">
-    {{login[0]?.toUpperCase()}}
-</div>
-
+<code-ss-user-avatar [Size]="50" [matMenuTriggerFor]="menu"></code-ss-user-avatar>
 <mat-menu #menu="matMenu">
     <button mat-menu-item>
         <mat-icon>person</mat-icon>

@@ -11,7 +11,6 @@ import { AuthService } from 'src/app/services/auth/auth.service';
     styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-    login$: Observable<string> = this.store.select(state => state.user.login);
     constructor(public authService: AuthService, private store: Store<State>) { }
 
     ngOnInit(): void {

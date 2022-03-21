@@ -1,0 +1,6 @@
+<div *ngIf="ImgUrl" class="avatar-image-container">
+    <img class="avatar" [style] = "getSizeStyle()" [src]="ImgUrl " alt="Red dot" />
+</div>
+<div *ngIf="!ImgUrl && Login" class="avatar" [style] = "getSizeStyle()">
+    {{Login[0]?.toUpperCase()}}
+</div>

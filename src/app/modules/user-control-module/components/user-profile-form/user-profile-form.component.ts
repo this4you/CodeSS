@@ -10,18 +10,18 @@ import { State } from 'src/app/reducers';
     styleUrls: ['./user-profile-form.component.scss']
 })
 export class UserProfileFormComponent implements OnInit {
-    user$: Observable<User> = this.store.select(state => state.user);
-    public ImgUrl = '';
-    public Login = '';
+    // user$: Observable<User> = this.store.select(state => state.user);
+    // public ImgUrl = '';
+    // public Login = '';
     constructor(private store: Store<State>) { }
 
     ngOnInit(): void {
-        this.user$.subscribe((user) => {
-            if (user && user.avatar) {
-                this.ImgUrl = 'data:image/png;base64,' + user.avatar;
-            }
-            this.Login = user.login;
-        })
+        // this.user$.subscribe((user) => {
+        //     if (user && user.avatar) {
+        //         this.ImgUrl = 'data:image/png;base64,' + user.avatar;
+        //     }
+        //     this.Login = user.login;
+        // })
     }
 
     public onFileSelected(event) {
