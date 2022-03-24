@@ -1,23 +1,23 @@
 <div class="profile-setting">
     <div class="profile-form">
         <h2>My profile</h2>
-        <form #myForm="ngForm" (ngSubmit)="submitForm(myForm)">
+        <form [formGroup]="form" (submit)="submitForm()">
             <p>
                 <mat-form-field required appearance="legacy">
                     <mat-label>Name</mat-label>
-                    <input name="name" matInput placeholder="Placeholder" [(ngModel)]="userData.name" required>
+                    <input type="text" formControlName="name" name="name" matInput placeholder="Placeholder" required>
                     <mat-hint>Your name</mat-hint>
                 </mat-form-field>
             </p>
             <p>
                 <mat-form-field appearance="legacy">
                     <mat-label>Email</mat-label>
-                    <input name="email" [formControl]="emailFormControl" [errorStateMatcher]="matcher" type="email" matInput placeholder="Placeholder" [(ngModel)]="userData.email" required>
+                    <input formControlName="email" name="email" type="email" matInput placeholder="Placeholder" required>
                     <mat-hint>your work email</mat-hint>
                 </mat-form-field>
             </p>
             <p>
-                <button type="submit" mat-raised-button color="accent">Accent</button>
+                <button type="submit" [disabled]="!form.dirty" mat-raised-button color="accent">Accent</button>
             </p>
         </form>
     </div>

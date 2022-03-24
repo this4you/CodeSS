@@ -18,7 +18,9 @@ export class UserAvatarComponent implements OnInit {
 
     ngOnInit(): void {
         this.user$.subscribe((user) => {
-            this.ImgUrl = user.avatar && ('data:image/png;base64,' + user.avatar);
+            this.ImgUrl = user.avatar && user.avatar.startsWith("data") ?
+                user.avatar :
+                ('data:image/png;base64,' + user.avatar);
             this.Login = user.login;
         })
     }

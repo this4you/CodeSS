@@ -15,11 +15,7 @@ export const UserReducer = createReducer(
     on(UserActions.initUserData, (state, payload) => {
         return ({
             ...state,
-            name: payload.name,
-            login: payload.login,
-            email: payload.email,
-            avatar: payload.avatar,
-            id: payload.id
+            ...payload
         })
     })
 );
