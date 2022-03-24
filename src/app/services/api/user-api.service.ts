@@ -15,6 +15,10 @@ export class UserApiService {
     }
 
     public update(request: User) {
-        return this.server.request('PUT', `user/${request.id}`, request, true)  
+        return this.server.request('PUT', `user/${request.id}`, request, true); 
+    }
+    
+    public updateAvatar(formData: FormData) {
+        return this.server.request('POST', `user/avatar`, formData, true);
     }
 }

@@ -2,6 +2,8 @@
     <div class="profile-form">
         <h2>My profile</h2>
         <form [formGroup]="form" (submit)="submitForm()">
+            <input formControlName="avatarFile" type="file" accept=".jpg ,.jpeg,.png,.svg" class="file-input" (change)="onFileSelected($event)"
+            #fileUpload>
             <p>
                 <mat-form-field required appearance="legacy">
                     <mat-label>Name</mat-label>
@@ -23,9 +25,6 @@
     </div>
     <div class="avatar-container">
         <code-ss-user-avatar></code-ss-user-avatar>
-        <!-- <code-ss-avatar [Login]="Login" [ImgUrl]="ImgUrl"></code-ss-avatar> -->
-        <input type="file" accept=".jpg ,.jpeg,.png,.svg" class="file-input" (change)="onFileSelected($event)"
-            #fileUpload>
         <button mat-mini-fab (click)="fileUpload.click()" color="primary"
             aria-label="Example icon button with a menu icon">
             <mat-icon>upload</mat-icon>

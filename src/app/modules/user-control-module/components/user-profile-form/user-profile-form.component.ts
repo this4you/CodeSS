@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { initUserData, updateUserData } from 'src/app/actions/user.actions';
+import { initUserData, updateUserAvatar, updateUserData } from 'src/app/actions/user.actions';
 import { User } from 'src/app/model/user.model';
 import { State } from 'src/app/reducers';
 
@@ -17,17 +16,22 @@ export class UserProfileFormComponent implements OnInit {
 
     public form: FormGroup;
 
+    private file: File;
+
     constructor(private store: Store<State>,
         private fb: FormBuilder) { }
 
     ngOnInit(): void {
         this.user$.subscribe((user) => {
-            this.iniForm(user);
+            if (!this.form || !this.form.dirty) {
+                this.iniForm(user);
+            }
         })
     }
 
     iniForm(user: User) {
         this.form = this.fb.group({
+            avatarFile: [''],
             id: [user.id],
             name: [user.name, [Validators.required]],
             email: [user.email, [Validators.email, Validators.required]]
@@ -35,22 +39,28 @@ export class UserProfileFormComponent implements OnInit {
     }
 
     public async submitForm() {
-        if (!this.form.invalid) {    
+        if (!this.form.invalid) {
+            var formData = new FormData();
+            formData.append("file", this.file, this.file.name);
+            // formData.append('file', this.form.get('fileSource').value);
             this.store.dispatch(updateUserData(this.form.value));
+            //this.store.dispatch(updateUserAvatar(formData));
+            this.form.reset();
         }
     }
 
     public onFileSelected(event) {
-        const file: File = event.target.files[0];
-        
+        this.file = event.target.files[0];
         const reader = new FileReader();
-        reader.readAsDataURL(file);
+        reader.readAsDataURL(this.file);
         reader.onload = () => {
-            this.store.dispatch(initUserData({avatar: reader.result} as User))
+            this.store.dispatch(initUserData({ avatar: reader.result } as User))
         };
         reader.onerror = function (error) {
-          console.log('Error: ', error);
+            console.log('Error: ', error);
         };
+
+
         // if (file) {
 
         //     this.fileName = file.name;
@@ -63,12 +73,5 @@ export class UserProfileFormComponent implements OnInit {
 
         //     upload$.subscribe();
         // }
-    }
-}
-
-class UserErrorStateMatcher implements ErrorStateMatcher {
-    isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-        const isSubmitted = form && form.submitted;
-        return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
     }
 }
