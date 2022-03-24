@@ -1,23 +1,25 @@
 <div class="profile-setting">
     <div class="profile-form">
         <h2>My profile</h2>
-        <p>
-            <mat-form-field required appearance="legacy">
-                <mat-label>Name</mat-label>
-                <input matInput placeholder="Placeholder" required>
-                <mat-hint>Your name</mat-hint>
-            </mat-form-field>
-        </p>
-        <p>
-            <mat-form-field appearance="legacy">
-                <mat-label>Email</mat-label>
-                <input matInput placeholder="Placeholder" required>
-                <mat-hint>your work email</mat-hint>
-            </mat-form-field>
-        </p>
-        <p>
-            <button mat-raised-button color="accent">Accent</button>
-        </p>
+        <form #myForm="ngForm" (ngSubmit)="submitForm(myForm)">
+            <p>
+                <mat-form-field required appearance="legacy">
+                    <mat-label>Name</mat-label>
+                    <input name="name" matInput placeholder="Placeholder" [(ngModel)]="userData.name" required>
+                    <mat-hint>Your name</mat-hint>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Email</mat-label>
+                    <input name="email" [formControl]="emailFormControl" [errorStateMatcher]="matcher" type="email" matInput placeholder="Placeholder" [(ngModel)]="userData.email" required>
+                    <mat-hint>your work email</mat-hint>
+                </mat-form-field>
+            </p>
+            <p>
+                <button type="submit" mat-raised-button color="accent">Accent</button>
+            </p>
+        </form>
     </div>
     <div class="avatar-container">
         <code-ss-user-avatar></code-ss-user-avatar>
