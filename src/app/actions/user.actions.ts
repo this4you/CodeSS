@@ -11,9 +11,4 @@ export const updateUserData = createAction(
     props<User>()
 );
 
-export const updateUserAvatar = createAction(
-    "UpdateUserData",
-    props<FormData>()
-);
-
 export const loadUserData = createAction('LoadUserData')

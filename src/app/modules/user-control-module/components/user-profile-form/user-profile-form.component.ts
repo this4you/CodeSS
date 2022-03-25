@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { initUserData, updateUserAvatar, updateUserData } from 'src/app/actions/user.actions';
+import { initUserData, updateUserData } from 'src/app/actions/user.actions';
 import { User } from 'src/app/model/user.model';
 import { State } from 'src/app/reducers';
 import { UserApiService } from 'src/app/services/api/user-api.service';
@@ -30,9 +30,8 @@ export class UserProfileFormComponent implements OnInit {
 
     iniForm(user: User) {
         this.form = this.fb.group({
-            avatarFile: [''],
             id: [user.id],
-            name: [user.name, [Validators.required]],
+            name: [user.name, [Validators.required, Validators.maxLength(50)]],
             email: [user.email, [Validators.email, Validators.required]]
         });
     }
@@ -46,17 +45,21 @@ export class UserProfileFormComponent implements OnInit {
 
     public onFileSelected(event) {
         const file = event.target.files[0];
-        // const reader = new FileReader();
-        // reader.readAsDataURL(file);
-        // reader.onload = () => {
-        //     this.store.dispatch(initUserData({ avatar: reader.result } as User))
-        // };
-        // reader.onerror = function (error) {
-        //     console.log('Error: ', error);
-        // };
         const formData = new FormData();
         formData.append("file", file);
-        this.userApiService.updateAvatar(formData).subscribe();
-        //this.store.dispatch(updateUserAvatar(formData));
+        this.userApiService.updateAvatar(formData).subscribe(() => {
+            this.updateAvatarStore(file);
+        });
+    }
+
+    private updateAvatarStore(file:File) {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            this.store.dispatch(initUserData({ avatar: reader.result } as User))
+        };
+        reader.onerror = function (error) {
+            console.log('Error: ', error);
+        };
     }
 }

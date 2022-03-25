@@ -28,7 +28,6 @@ export class ServerService {
         }
 
         const header = (this.loggedIn) ? { Authorization: `Bearer ${this.token}` } : undefined;
-        debugger
         if (data instanceof FormData) {
             return this.http.post(baseUrl + route, data, {
                 responseType: 'json',

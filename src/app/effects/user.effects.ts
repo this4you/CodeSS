@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import { map, mergeMap, catchError, exhaustMap, tap } from 'rxjs/operators';
-import { initUserData, loadUserData, updateUserAvatar, updateUserData } from '../actions/user.actions';
+import { initUserData, loadUserData, updateUserData } from '../actions/user.actions';
 import { User } from '../model/user.model';
 import { UserApiService } from '../services/api/user-api.service';
 //import { MoviesService } from './movies.service';
@@ -25,14 +25,6 @@ export class UserEffects {
         exhaustMap(user =>
             this.userApiService.update(user)
                 .pipe(map(() => initUserData(user))))
-    ));
-
-    updateUserAvatar$ = createEffect(() => this.actions$.pipe(
-        ofType(updateUserAvatar),
-        tap(formData =>
-            this.userApiService.updateAvatar(formData).subscribe(() => {
-                 console.log("Success");
-            }))
     ));
 
     constructor(
