@@ -28,14 +28,23 @@ export class ServerService {
         }
 
         const header = (this.loggedIn) ? { Authorization: `Bearer ${this.token}` } : undefined;
-
-        return this.http.request(method, baseUrl + route, {
-            body: data,
-            responseType: 'json',
-            observe: 'body',
-            headers: header,
-            context
-        });
+        debugger
+        if (data instanceof FormData) {
+            return this.http.post(baseUrl + route, data, {
+                responseType: 'json',
+                observe: 'body',
+                headers: header,
+                context
+            });
+        } else {
+            return this.http.request(method, baseUrl + route, {
+                body: data,
+                responseType: 'json',
+                observe: 'body',
+                headers: header,
+                context
+            });
+        }
     }
 
     get(route: string, context: HttpContext, data?: any) {
