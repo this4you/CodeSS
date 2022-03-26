@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { userActions } from 'src/app/actions'; 
+import { userActions } from 'src/app/redux/actions'; 
 import { CodeCategoryService } from 'src/app/services/common/code-category.service';
 
 @Component({

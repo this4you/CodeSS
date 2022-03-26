@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { userActions } from 'src/app/actions'; 
+import { userActions } from 'src/app/redux/actions'; 
 import { User } from 'src/app/model/user.model';
-import { State } from 'src/app/reducers';
+import { State } from 'src/app/redux/reducers';
 import { UserApiService } from 'src/app/services/api/user-api.service';
 
 @Component({

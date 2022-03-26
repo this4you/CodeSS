@@ -19,10 +19,10 @@ import { SpinnerInterceptor } from './services/spinner-interceptor.service';
 import { PipesModule } from './pipes/pipes.module';
 import { CommonComponentsModule } from './common-components/common-components.module';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
+import { reducers, metaReducers } from './redux/reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
-import { UserEffects } from './effects/user.effects';
+import { UserEffects } from './redux/effects/user.effects';
 import { UserControlModule } from './modules/user-control-module/user-control.module';
 
 @NgModule({

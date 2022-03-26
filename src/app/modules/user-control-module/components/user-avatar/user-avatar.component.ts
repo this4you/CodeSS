@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/model/user.model';
-import { State } from 'src/app/reducers';
+import { State } from 'src/app/redux/reducers';
 
 @Component({
     selector: 'code-ss-user-avatar',
