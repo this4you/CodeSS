@@ -40,5 +40,10 @@
             display: flex;
             justify-content: flex-end;
         }
+        .date {
+            position: absolute;
+            bottom: 8px;
+            color: #673ab7;
+        }
     }
 }

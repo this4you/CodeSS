@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { initUserData, updateUserData } from 'src/app/actions/user.actions';
+import { userActions } from 'src/app/actions'; 
 import { User } from 'src/app/model/user.model';
 import { State } from 'src/app/reducers';
 import { UserApiService } from 'src/app/services/api/user-api.service';
@@ -38,7 +38,7 @@ export class UserProfileFormComponent implements OnInit {
 
     public async submitForm() {
         if (!this.form.invalid) {
-            this.store.dispatch(updateUserData(this.form.value));
+            this.store.dispatch(userActions.updateUser(this.form.value));
             this.form.reset();
         }
     }
@@ -56,7 +56,7 @@ export class UserProfileFormComponent implements OnInit {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => {
-            this.store.dispatch(initUserData({ avatar: reader.result } as User))
+            this.store.dispatch(userActions.setUser({ avatar: reader.result } as User))
         };
         reader.onerror = function (error) {
             console.log('Error: ', error);

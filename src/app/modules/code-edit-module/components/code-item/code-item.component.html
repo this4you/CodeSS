@@ -13,14 +13,8 @@
         <mat-divider inset></mat-divider>
         <mat-card-content class="content">
             <h4 class="description">
-                <ng-template [ngIf]="code.DiscriptionText">
-                    {{code.DiscriptionText}}
-                </ng-template>
-                <ng-template [ngIf]="!code.DiscriptionText">
-                    No description
-                </ng-template>
+                No description
             </h4>
-            <!-- {{code.DiscriptionText}} -->
             <mat-card-actions class="actions">
                 <button mat-button>
                     <mat-icon>share</mat-icon>
@@ -29,6 +23,7 @@
                     <mat-icon>delete</mat-icon>
                 </button>
             </mat-card-actions>
+            <div class="date">26.03.2022</div>
         </mat-card-content>
     </mat-card>
 </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { initUserData, loadUserData } from 'src/app/actions/user.actions';
+import { userActions } from 'src/app/actions'; 
 import { CodeCategoryService } from 'src/app/services/common/code-category.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class MainPageComponent implements OnInit {
     private store: Store) { }
 
   ngOnInit(): void {
-      this.store.dispatch(loadUserData());
+      this.store.dispatch(userActions.getUser());
   }
 
 }

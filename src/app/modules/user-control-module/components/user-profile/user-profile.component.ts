@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { initUserData } from 'src/app/actions/user.actions';
+import { userActions } from 'src/app/actions'; 
 import { State } from 'src/app/reducers';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
@@ -18,7 +17,7 @@ export class UserProfileComponent implements OnInit {
 
     logout() {
         this.authService.logout();
-        this.store.dispatch(initUserData(null))
+        this.store.dispatch(userActions.setUser(null));
     }
 
 }

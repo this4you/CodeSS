@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
-import { map, mergeMap, catchError, exhaustMap, tap } from 'rxjs/operators';
-import { initUserData, loadUserData, updateUserData } from '../actions/user.actions';
+import { map, mergeMap, catchError, exhaustMap} from 'rxjs/operators';
+import { userActions } from 'src/app/actions'; 
 import { User } from '../model/user.model';
 import { UserApiService } from '../services/api/user-api.service';
 //import { MoviesService } from './movies.service';
@@ -10,21 +10,21 @@ import { UserApiService } from '../services/api/user-api.service';
 export class UserEffects {
 
     loadUserData$ = createEffect(() => this.actions$.pipe(
-        ofType(loadUserData),
+        ofType(userActions.getUser),
         mergeMap(() => this.userApiService.get()
             .pipe(
                 map(user => {
-                    return initUserData(user as User); //({ type: 'InitUserData', payload: user })
+                    return userActions.setUser(user as User);
                 }),
                 catchError(() => EMPTY)
             ))
     ));
 
     updateUserData$ = createEffect(() => this.actions$.pipe(
-        ofType(updateUserData),
+        ofType(userActions.updateUser),
         exhaustMap(user =>
             this.userApiService.update(user)
-                .pipe(map(() => initUserData(user))))
+                .pipe(map(() => userActions.setUser(user))))
     ));
 
     constructor(
