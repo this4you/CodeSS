@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { CodeCategoryModel } from 'src/app/model/codecategory.model';
 import { CodeModel } from '../../model/code.model';
-import { CodeApiService, CodeCreateRequest, CodeUpdateRequest } from '../api/code-api.service';
+import { CodeApiService, CodeCreateRequest, CodeParams, CodeUpdateRequest } from '../api/code-api.service';
 import { CodeCategoryService } from './code-category.service';
 
 @Injectable()
@@ -32,7 +32,7 @@ export class CodeService {
         categoryId = categoryId || this.codeCategoryService.getCurrentCategoryId();
         const limit = isInitLoad ? this.limit : this.getAllCodeValue().length + this.limit;
         if (categoryId == "all") {
-            this.getAll({limit: limit}, true);
+            this.getAll({limit: limit} as CodeParams, true);
         } else {
             this.getAll({
                 limit: limit,
@@ -41,7 +41,7 @@ export class CodeService {
         }
     }
 
-    public getAll(params: object = {}, isForce: boolean = false): void {
+    public getAll(params: CodeParams, isForce: boolean = false): void {
         var currentValues = this._allCode.getValue();
         if (currentValues.length == 0 || isForce) {
             this.codeApi.getAll(params)

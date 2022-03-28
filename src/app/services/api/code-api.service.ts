@@ -15,6 +15,10 @@ export type CodeUpdateRequest = {
     CodeCategoryId: string 
 }
 
+export type CodeParams = {
+    categoryId: string,
+    limit: number
+}
 
 @Injectable()
 export class CodeApiService {
@@ -24,8 +28,8 @@ export class CodeApiService {
     ) {
     }
 
-    public getAll(params: object = {}) {
-        return this.server.request('GET', 'code', params, true);
+    public getAll(params: CodeParams) {
+        return this.server.request('GET', 'code', params || {}, true);
     }
 
     public get(id: string) {

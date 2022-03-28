@@ -5,7 +5,7 @@ import { map, mergeMap, catchError, exhaustMap} from 'rxjs/operators';
 import { userActions } from 'src/app/redux/actions'; 
 import { User } from '../../model/user.model';
 import { UserApiService } from '../../services/api/user-api.service';
-//import { MoviesService } from './movies.service';
+
 @Injectable()
 export class UserEffects {
     constructor(

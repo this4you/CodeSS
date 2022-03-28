@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { CodeParams } from 'src/app/services/api/code-api.service';
 import { CodeModel } from '../../model/code.model';
 
 export default {
@@ -8,6 +9,6 @@ export default {
     ),
     getCodes: createAction(
         "get:codes",
-        props<{categoryId?: string, limit?: number}>()
+        props<{params: CodeParams}>()
     )
 }

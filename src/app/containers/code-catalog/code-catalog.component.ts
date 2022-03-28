@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { CodeCategoryService } from 'src/app/services/common/code-category.service';
 import { CodeService } from 'src/app/services/common/code.service';
 
@@ -8,17 +9,21 @@ import { CodeService } from 'src/app/services/common/code.service';
     templateUrl: './code-catalog.component.html',
     styleUrls: ['./code-catalog.component.scss']
 })
-export class CodeCatalogComponent implements OnInit {
-
+export class CodeCatalogComponent implements OnInit, OnDestroy {
+    currentCodeCategorySubscriber : Subscription;
     constructor(
         public codeCategoryService: CodeCategoryService,
         public codeService: CodeService,
         public router: Router
     ) { }
 
+    ngOnDestroy(): void {
+        this.currentCodeCategorySubscriber.unsubscribe();
+    }
+
     ngOnInit(): void {
         this.codeCategoryService.getAll();
-        this.codeCategoryService.currentCodeCategory.subscribe(category => {
+        this.currentCodeCategorySubscriber = this.codeCategoryService.currentCodeCategory.subscribe(category => {
             this.codeService.loadCode(category, true);
         });
     }
