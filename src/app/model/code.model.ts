@@ -5,6 +5,7 @@ export class CodeModel {
         public Id?: string,
         public Title?: string,
         public Text?: string,
-        public Category? : CodeCategoryModel
+        public Category? : CodeCategoryModel,
+        public UpdatedOn? : Date
     ) {}
 }

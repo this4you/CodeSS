@@ -49,7 +49,7 @@ export class CodeService {
                     if (response && Array.isArray(response)) {
                         let codes: CodeModel[] = [];
                         codes = response.map(item => new CodeModel(item.id, item.name, item.text,
-                            new CodeCategoryModel(item?.codeCategory?.name || "all", item?.codeCategory?.id)));
+                            new CodeCategoryModel(item?.codeCategory?.name || "all", item?.codeCategory?.id), new Date(item.updatedOn)));
                         this._allCode.next(codes);
                     }
                 });
