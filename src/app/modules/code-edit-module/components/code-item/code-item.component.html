@@ -1,12 +1,12 @@
 <div class="code-item-outer">
-    <mat-card class="card" [routerLink]="['/main/code/edit/', code.Id]">
+    <mat-card class="card" [routerLink]="['/main/code/edit/', code.id]">
         <div class="header">
             <div class="title">
-                <mat-card-title>{{code.Title}}</mat-card-title>
+                <mat-card-title>{{code.name}}</mat-card-title>
             </div>
             <div class="category-container">
                 <button mat-raised-button color="primary">
-                    <span class="text">{{code.Category.Name}}</span>
+                    <span class="text">{{code.codeCategory?.name || 'All'}}</span>
                 </button>
             </div>
         </div>
@@ -23,7 +23,7 @@
                     <mat-icon>delete</mat-icon>
                 </button>
             </mat-card-actions>
-            <div class="date">{{code.UpdatedOn | date}}</div>
+            <div class="date">{{code.updatedOn | date}}</div>
         </mat-card-content>
     </mat-card>
 </div>

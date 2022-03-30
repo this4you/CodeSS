@@ -47,10 +47,7 @@ export class CodeService {
             this.codeApi.getAll(params)
                 .subscribe((response: any) => {
                     if (response && Array.isArray(response)) {
-                        let codes: CodeModel[] = [];
-                        codes = response.map(item => new CodeModel(item.id, item.name, item.text,
-                            new CodeCategoryModel(item?.codeCategory?.name || "all", item?.codeCategory?.id), new Date(item.updatedOn)));
-                        this._allCode.next(codes);
+                        this._allCode.next(response);
                     }
                 });
         }
@@ -58,11 +55,9 @@ export class CodeService {
 
     public createCode(request: CodeCreateRequest) {
         return this.codeApi.create(request)
-            .subscribe((response: any) => {
+            .subscribe((response: CodeModel) => {
                 const currentCodes = this._allCode.getValue();
-                const codeCategory = new CodeCategoryModel(response.codeCategory.name, response.codeCategory.id);
-                const newCode = new CodeModel(response.id, response.name, response.text, codeCategory);
-                this._allCode.next([...currentCodes, newCode]);
+                this._allCode.next([...currentCodes, response]);
             });
     }
 
@@ -70,10 +65,10 @@ export class CodeService {
         return this.codeApi.update(request)
             .subscribe((response: any) => {
                 const currentCodes = this._allCode.getValue();
-                const code = currentCodes.find(c => c.Id === request.Id);
-                code.Text = request.Text,
-                code.Title = request.Name,
-                code.Category = this.codeCategoryService.getCategoryById(request.CodeCategoryId)
+                const code = currentCodes.find(c => c.id === request.id);
+                code.text = request.text,
+                code.name = request.name,
+                code.codeCategory = this.codeCategoryService.getCategoryById(request.codeCategoryId)
                 this._allCode.next([...currentCodes]);
 
             });
@@ -87,7 +82,7 @@ export class CodeService {
         return this.codeApi.delete(id)
             .subscribe((response: any) => {
                 const currentCodes = this._allCode.getValue();
-                let codes = currentCodes.filter(i => i.Id != id);
+                let codes = currentCodes.filter(i => i.id != id);
                 this._allCode.next(codes);
             });
     }

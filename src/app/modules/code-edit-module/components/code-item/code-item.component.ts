@@ -17,7 +17,7 @@ export class CodeItemComponent {
 
     delete() {
         event.stopPropagation();
-        this.codeService.deleteCode(this.code.Id).add(() => {
+        this.codeService.deleteCode(this.code.id).add(() => {
             this.codeService.loadCode("", true);
         });
     }

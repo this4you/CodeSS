@@ -30,7 +30,7 @@ export class CategoryListComponent implements OnInit {
             .pipe(
                 map(categories => categories
                     .filter(value => this.searchCategory ?
-                        value.Name.toUpperCase().includes(this.searchCategory.toUpperCase()) : true)));
+                        value.name.toUpperCase().includes(this.searchCategory.toUpperCase()) : true)));
     }
 
     public createNewCategory() {

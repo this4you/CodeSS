@@ -17,12 +17,12 @@
         </button>
     </div>
     <div *ngFor="let category of getCategories() | async" class="category-item">
-        <button [routerLink]="['/main/code/catalog', category.Id]" routerLinkActive="router-link-active"
+        <button [routerLink]="['/main/code/catalog', category.id]" routerLinkActive="router-link-active"
             routerLinkActive="router-link-active" mat-raised-button
-            (click)="codeCategoryService.setCurrentCategory(category.Id)" color="primary">
+            (click)="codeCategoryService.setCurrentCategory(category.id)" color="primary">
             <div class="button-content">
-                <span class="text">{{category.Name}}</span>
-                <mat-icon (click)="deleteCategory(category.Id)" class="del-icon">close</mat-icon>
+                <span class="text">{{category.name}}</span>
+                <mat-icon (click)="deleteCategory(category.id)" class="del-icon">close</mat-icon>
             </div>
 
         </button>

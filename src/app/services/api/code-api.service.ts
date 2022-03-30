@@ -3,16 +3,16 @@ import { ServerService } from '../server.service';
 
 
 export type CodeCreateRequest = {
-    Name: string,
-    Text: string,
-    CodeCategoryId: string
+    name: string,
+    text: string,
+    codeCategoryId: string
 };
 
 export type CodeUpdateRequest = {
-    Id: string,
-    Name: string,
-    Text: string,
-    CodeCategoryId: string 
+    id: string,
+    name: string,
+    text: string,
+    codeCategoryId: string 
 }
 
 export type CodeParams = {
@@ -45,7 +45,7 @@ export class CodeApiService {
     }
 
     public update(request: CodeUpdateRequest) {
-        return this.server.request('PUT', `code/${request.Id}`, request, true);
+        return this.server.request('PUT', `code/${request.id}`, request, true);
     }
 
 }

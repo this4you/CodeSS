@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CodeModel } from 'src/app/model/code.model';
 import { CodeCategoryModel } from 'src/app/model/codecategory.model';
@@ -16,11 +17,16 @@ export class CodeEditorComponent implements OnInit {
     public codeData: CodeModel = new CodeModel();
     public selectedCategory: string = "";
     protected isEditMode = false;
+
+    public form: FormGroup;
+
+    
     constructor(
         public codeCategoryService: CodeCategoryService,
         public codeService: CodeService,
         private activatedRoute: ActivatedRoute,
         private router: Router,
+        private fb: FormBuilder,
     ) { }
 
     ngOnInit(): void {
@@ -30,11 +36,11 @@ export class CodeEditorComponent implements OnInit {
                 this.codeService.getCode(params?.codeId).subscribe(response => {
                     this.isEditMode = true;
                     const resp: any = response;
-                    this.codeData = new CodeModel(
-                        resp.id,
-                        resp.name,
-                        resp.text
-                    );
+                    this.form = this.fb.group({
+                        id: [resp.id],
+                        name: [resp.name],
+                    });
+                    this.codeData = resp as CodeModel;
                     if (resp.codeCategory) {
                         this.selectedCategory = resp.codeCategory.id;
                     }
@@ -44,6 +50,7 @@ export class CodeEditorComponent implements OnInit {
     }
 
     onSaveButtonClick() {
+        debugger
         if (this.isEditMode) {
             this.updateData();
         } else {
@@ -55,10 +62,10 @@ export class CodeEditorComponent implements OnInit {
         const currentCategory: CodeCategoryModel =
             this.codeCategoryService.getCategoryById(this.selectedCategory);
         const request: CodeUpdateRequest = {
-            Id: this.codeData.Id,
-            Name: this.codeData.Title,
-            Text: this.codeData.Text,
-            CodeCategoryId: currentCategory.Id
+            id: this.codeData.id,
+            name: this.codeData.name,
+            text: this.codeData.text,
+            codeCategoryId: currentCategory?.id
         };
 
         this.codeService.updateCode(request);      
@@ -68,9 +75,9 @@ export class CodeEditorComponent implements OnInit {
         const currentCategory: CodeCategoryModel =
             this.codeCategoryService.getCategoryById(this.selectedCategory);
         const request: CodeCreateRequest = {
-            CodeCategoryId: currentCategory.Id,
-            Name: this.codeData.Title,
-            Text: this.codeData.Text
+            codeCategoryId: currentCategory?.id,
+            name: this.codeData.name,
+            text: this.codeData.text
         };
 
         this.codeService.createCode(request).add(() => {

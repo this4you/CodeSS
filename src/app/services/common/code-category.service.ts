@@ -31,13 +31,13 @@ export class CodeCategoryService {
     this.codeCategoryApiService.create(name)
       .subscribe((response: any) => {
         const currentCategories = this._allCategories.getValue();
-        const categories = [...currentCategories, new CodeCategoryModel(response.name, response.id)];
+        const categories = [...currentCategories, response];
         this._allCategories.next(categories);
       });
   }
   
   getCategoryById(id: string) {
-    return this._allCategories.getValue().find(c => c.Id === id);
+    return this._allCategories.getValue().find(c => c.id === id);
   }
 
   getCurrentCategoryId() {
@@ -48,7 +48,7 @@ export class CodeCategoryService {
     this.codeCategoryApiService.delete(id)
       .subscribe((response: any) => {
         const currentCategories = this._allCategories.getValue();
-        let categories = currentCategories.filter(i => i.Id != id);
+        let categories = currentCategories.filter(i => i.id != id);
         this._allCategories.next(categories);
       });
   }
@@ -59,9 +59,7 @@ export class CodeCategoryService {
       this.codeCategoryApiService.getAll()
         .subscribe((response: any) => {
           if (response && Array.isArray(response)) {
-            let codeCategories: CodeCategoryModel[] = [];
-            codeCategories = response.map(item => new CodeCategoryModel(item.name, item.id));
-            this._allCategories.next(codeCategories);
+            this._allCategories.next(response);
           }
         });
     }

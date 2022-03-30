@@ -1,6 +1,4 @@
 export class CodeCategoryModel {
-    constructor(
-        public Name: string,
-        public Id?: string
-    ) {}
+    public id: string;
+    public name: string;
 }

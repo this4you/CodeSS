@@ -6,21 +6,21 @@
             </button>
             <mat-form-field appearance="fill">
                 <mat-label>Title</mat-label>
-                <input matInput placeholder="Title" [(ngModel)]="codeData.Title" name="title">
+                <input matInput placeholder="Title" [(ngModel)]="codeData.name" name="title">
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Category</mat-label>
                 <mat-select [(ngModel)]="selectedCategory" name="category">
                     <mat-option *ngFor="let category of this.codeCategoryService.allCategories | async"
-                        [value]="category.Id">
-                        {{category.Name}}
+                        [value]="category.id">
+                        {{category.name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
         </form>
     </div>
     <div class="code-editor-text">
-        <ngx-codemirror [(ngModel)]="codeData.Text" [options]="{
+        <ngx-codemirror [(ngModel)]="codeData.text" [options]="{
             lineNumbers: true,
             theme: 'material-palenight',
             mode: 'javascript',
