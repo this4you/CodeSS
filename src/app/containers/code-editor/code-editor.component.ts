@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CodeModel } from 'src/app/model/code.model';
 import { CodeCategoryModel } from 'src/app/model/codecategory.model';
-import { CodeCreateRequest, CodeUpdateRequest } from 'src/app/services/api/code-api.service';
+import { CodeUpdateRequest } from 'src/app/services/api/code-api.service';
 import { CodeCategoryService } from 'src/app/services/common/code-category.service';
 import { CodeService } from 'src/app/services/common/code.service';
 
@@ -20,7 +20,7 @@ export class CodeEditorComponent implements OnInit {
 
     public form: FormGroup;
 
-    
+
     constructor(
         public codeCategoryService: CodeCategoryService,
         public codeService: CodeService,
@@ -30,57 +30,46 @@ export class CodeEditorComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+        this.initForm();
         this.codeCategoryService.getAll();
         this.activatedRoute.params.subscribe(params => {
             if (params?.codeId) {
                 this.codeService.getCode(params?.codeId).subscribe(response => {
                     this.isEditMode = true;
                     const resp: any = response;
-                    this.form = this.fb.group({
-                        id: [resp.id],
-                        name: [resp.name],
-                    });
+                    this.initForm(resp);
                     this.codeData = resp as CodeModel;
-                    if (resp.codeCategory) {
-                        this.selectedCategory = resp.codeCategory.id;
-                    }
                 });
             }
         });
     }
 
+    initForm(code?: CodeModel) {
+        this.form = this.fb.group({
+            id: [code?.id || ""],
+            name: [code?.name || "", [Validators.required, Validators.maxLength(50)]],
+            text: [code?.text || ""],
+            codeCategoryId: [code?.codeCategory?.id]
+        });
+    }
+
     onSaveButtonClick() {
-        debugger
-        if (this.isEditMode) {
-            this.updateData();
-        } else {
-            this.saveData();
+        if (!this.form.invalid) {
+            const request: CodeUpdateRequest = this.form.value;
+            if (this.isEditMode) {
+                this.updateData(request);
+            } else {
+                this.saveData(request);
+            }
         }
     }
 
-    updateData(): void {
-        const currentCategory: CodeCategoryModel =
-            this.codeCategoryService.getCategoryById(this.selectedCategory);
-        const request: CodeUpdateRequest = {
-            id: this.codeData.id,
-            name: this.codeData.name,
-            text: this.codeData.text,
-            codeCategoryId: currentCategory?.id
-        };
-
-        this.codeService.updateCode(request);      
+    updateData(requestData): void {
+        this.codeService.updateCode(requestData);
     }
 
-    saveData(): void {
-        const currentCategory: CodeCategoryModel =
-            this.codeCategoryService.getCategoryById(this.selectedCategory);
-        const request: CodeCreateRequest = {
-            codeCategoryId: currentCategory?.id,
-            name: this.codeData.name,
-            text: this.codeData.text
-        };
-
-        this.codeService.createCode(request).add(() => {
+    saveData(requestData): void {
+        this.codeService.createCode(requestData).add(() => {
             this.router.navigate(['/main/code/catalog/all]']);
         });
     }
